@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Money Knowledge</string>
+    <string name="connect">Connect</string>
+    <string name="play_as_guest">Play as guest</string>
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="reset_password">Reset password</string>
+    <string name="err_name">Please write a valid name!</string>
+    <string name="err_telefon">Please write a valid phone number!</string>
+    <string name="err_email">Please write a valid email!</string>
+    <string name="err_parola">The password must have at least 8 characters.</string>
+    <string name="msj_welcome">Welcome!</string>
+    <string name="msj_error">Ups! There seems to be an error!</string>
+</resources>

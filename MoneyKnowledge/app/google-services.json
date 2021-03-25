@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "921620491334",
+    "project_id": "learningapp-baa29",
+    "storage_bucket": "learningapp-baa29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921620491334:android:755478e9c8256d09f32e47",
+        "android_client_info": {
+          "package_name": "com.example.moneyknowledge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921620491334-dke8n4ll6bdf1jvu3obc6h617bh99ctd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDekrvdtGfk6gdWq_koK2T9k4uq9AfCg_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921620491334-dke8n4ll6bdf1jvu3obc6h617bh99ctd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

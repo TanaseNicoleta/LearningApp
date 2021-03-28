@@ -11,7 +11,12 @@
         android:theme="@style/Theme.MoneyKnowledge">
         <activity android:name=".activities.RegisterActivity"></activity>
         <activity android:name=".activities.LogInActivity" />
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.LessonsActivity" />
         <activity android:name=".activities.ForgotPasswordActivity" />
     </application>

@@ -5,4 +5,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#FF7E6F95</color>
+    <color name="purple2">#3C2A49</color>
+    <color name="purple3">#A69D88BD</color>
 </resources>

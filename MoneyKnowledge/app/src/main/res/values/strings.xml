@@ -18,4 +18,7 @@
     <string name="err_parola">The password must have at least 8 characters.</string>
     <string name="msj_welcome">Welcome!</string>
     <string name="msj_error">Ups! There seems to be an error!</string>
+    <string name="auth_failed">Authentication has failed! Sorry :(</string>
+    <string name="email_err">There seems to be something wrong with this email. Please write a registered email.</string>
+    <string name="inform_email_has_been_sent">An email has been sent to you.</string>
 </resources>

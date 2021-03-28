@@ -1,17 +1,20 @@
 package com.example.moneyknowledge.model;
 
-public class User {
-    private String id, name, phone, email, password;
+import java.io.Serializable;
 
-    public User(String id, String name, String phone, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.password = password;
-    }
+public class User implements Serializable {
+    private String id, name, email, phone, birthDate, password;
 
     public User() {
+    }
+
+    public User(String id, String name, String email, String phone, String birthDate, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.birthDate = birthDate;
+        this.password = password;
     }
 
     public String getId() {
@@ -30,14 +33,6 @@ public class User {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -46,11 +41,39 @@ public class User {
         this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

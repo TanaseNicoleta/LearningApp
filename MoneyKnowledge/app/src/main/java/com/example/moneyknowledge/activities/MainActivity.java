@@ -5,13 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.moneyknowledge.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnConnect, btnGuest;
+    Button btnConnect, btnGuest;
+    ImageView logo;
+    Animation topAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
+        logo = findViewById(R.id.logo);
+        topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        logo.setAnimation(topAnimation);
         btnGuest = findViewById(R.id.btn_Guest);
         btnConnect = findViewById(R.id.btn_connect);
     }

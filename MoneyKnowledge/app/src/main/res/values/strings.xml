@@ -21,4 +21,13 @@
     <string name="auth_failed">Authentication has failed! Sorry :(</string>
     <string name="email_err">There seems to be something wrong with this email. Please write a registered email.</string>
     <string name="inform_email_has_been_sent">An email has been sent to you.</string>
+    <string name="profile">Profile</string>
+    <string name="lessons">Lessons</string>
+    <string name="reports">Reports</string>
+    <string name="economical_news">Economical News</string>
+    <string name="log_out">Log out</string>
+    <string name="update">Update</string>
+    <string name="any_questions">Any questions?</string>
+    <string name="open_nav">Open navigation drawer</string>
+    <string name="close_nav">Close navigation drawer</string>
 </resources>

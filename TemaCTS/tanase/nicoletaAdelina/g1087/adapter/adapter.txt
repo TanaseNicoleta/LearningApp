@@ -1,0 +1,9 @@
+Tema licenta: Aplicatie informatica dedicata invatarii
+
+Dorim sa folosim un adapter pentru a putea autentifica un utilizator care initial a accesat aplicatie ca vizitator.
+
+Avantaje:
+    Clasele existente nu sunt modificate pentru a putea fi folosite într-un alt context
+    Se adaugă doar un layer intermediar.
+
+Dezavantaje:

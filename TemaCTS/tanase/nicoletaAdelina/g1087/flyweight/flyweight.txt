@@ -1,0 +1,11 @@
+Tema licenta: Aplicatie informatica dedicata invatarii
+
+Dorim sa cream mai multe obiecte de tip test insa fara a ocupa foarte multa memorie.
+
+Avantaje:
+    Se reduce memoria ocupata de obiecte prin partajarea lor intre clienți.
+    Pentru a gestiona corect partajarea obiectelor de tip Flyweight între clienți și fire de execuție, acestea trebuie sa fie immutable.
+
+Dezavantaje:
+    Trebuie analizate clasele si contextul pentru a se determina ce reprezintă stare variabilă ce poate fi internalizată.
+    Efectele sunt vizibile pentru soluții in care numărul de obiecte este mare.

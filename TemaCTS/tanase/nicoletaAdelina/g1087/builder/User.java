@@ -16,12 +16,21 @@ public class User {
         this.lectiiUtilizator = lectiiUtilizator;
     }
 
+    public User(String email, String parola) {
+        this.email = email;
+        this.parola = parola;
+    }
+
     public String getNume() {
         return nume;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public String getParola() {
+        return parola;
     }
 
     public static class UserBuilder {

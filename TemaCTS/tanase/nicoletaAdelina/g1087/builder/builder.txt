@@ -1,0 +1,12 @@
+Tema licenta: Aplicatie informatica dedicata invatarii
+
+Dorim sa creeam mai multe obiecte de tip utilizator ce au deza anumite lectii asignate.
+
+Avantaje:
+    Obiectele complexe pot fi create independent de părțile care îl
+    compun.
+    Sistemul permite reprezentarea diferita a obiectelor create printr-o
+    interfață comună.
+
+Dezavantaje:
+    La crearea de obiecte putem omite anumite atribute.

@@ -9,8 +9,16 @@ import tanase.nicoletaAdelina.g1087.decorator.TestFinante;
 import tanase.nicoletaAdelina.g1087.factory.AbstractLectie;
 import tanase.nicoletaAdelina.g1087.factory.LectieFactory;
 import tanase.nicoletaAdelina.g1087.factory.TipLectie;
+import tanase.nicoletaAdelina.g1087.flyweight.InterfataTest;
+import tanase.nicoletaAdelina.g1087.flyweight.ModelTest;
+import tanase.nicoletaAdelina.g1087.flyweight.TestFactory;
 import tanase.nicoletaAdelina.g1087.prototype.ModelUserGuest;
+import tanase.nicoletaAdelina.g1087.proxy.InterfataLogIn;
+import tanase.nicoletaAdelina.g1087.proxy.LogIn;
+import tanase.nicoletaAdelina.g1087.proxy.PoxyLogIn;
 import tanase.nicoletaAdelina.g1087.singleton.SQLiteConexiune;
+
+import java.util.HashMap;
 
 public class TestAssignment {
     public static void main(String[] args) throws CloneNotSupportedException {
@@ -52,12 +60,29 @@ public class TestAssignment {
         System.out.println(user.getNume());
         System.out.println(user2.getNume());
 
-
         //Adapter
         UserConcret userConcret1 = new UserConcret();
         userConcret1.readLessons("", "");
         userConcret1.readLessons("Ana", "");
         userConcret1.readLessons("Ana", "12356");
+
+        //Proxy
+        InterfataLogIn login = new LogIn("10.0.0.2");
+        login = new PoxyLogIn(login);
+        User userProxy = new User("ana@gmail.com", "1245689");
+        String token = login.generateAuthToken(userProxy.getEmail(), user.getParola());
+        if(login.auth(token))
+            System.out.println("Hello user!");
+
+        //Flyweight
+        HashMap<String, String> intrebari = new HashMap<>();
+        intrebari.put("Intr1", "rasp1");
+        intrebari.put("Intr2", "rasp2");
+        intrebari.put("Intr3", "rasp3");
+        ModelTest test1 = new ModelTest(intrebari, "Economie");
+        InterfataTest modelTest = TestFactory.getDomenii("Economie");
+
+
 
     }
 }

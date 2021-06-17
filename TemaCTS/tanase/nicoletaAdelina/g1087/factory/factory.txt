@@ -1,9 +1,0 @@
-Tema licenta: Aplicatie informatica dedicata invatarii
-
-Dorim sa creeam mai multe lectii fara a permite utilizatorului sa vada complexitatea din spatele crearii lor.
-
-Avantaje:
-    Obiectele create au in comun interfata.
-    Este usor de impementat.
-    Putem controla instatierea obiectelor.
-Dezavantaje:

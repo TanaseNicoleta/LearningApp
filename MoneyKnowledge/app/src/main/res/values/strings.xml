@@ -30,4 +30,10 @@
     <string name="any_questions">Any questions?</string>
     <string name="open_nav">Open navigation drawer</string>
     <string name="close_nav">Close navigation drawer</string>
+    <string name="money_knowledge">Money Knowledge</string>
+    <string name="contactus_mk_com">contactUs@mk.com</string>
+    <string name="remember_me">Remember me</string>
+    <string name="economie">Economie</string>
+    <string name="my_profile">My profile</string>
+    <string name="contact_us">Contact us</string>
 </resources>

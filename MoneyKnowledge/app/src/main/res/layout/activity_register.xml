@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.RegisterActivity"
+    tools:context=".activities.register.RegisterActivity"
     android:background="@drawable/wal1">
 
     <!--Birth date fa-l un pop-up cu datePicker-->

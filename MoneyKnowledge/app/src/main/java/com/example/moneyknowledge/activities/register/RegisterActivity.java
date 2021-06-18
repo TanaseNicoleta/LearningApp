@@ -1,4 +1,4 @@
-package com.example.moneyknowledge.activities;
+package com.example.moneyknowledge.activities.register;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

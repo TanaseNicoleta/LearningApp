@@ -1,4 +1,4 @@
-package com.example.moneyknowledge.activities;
+package com.example.moneyknowledge.activities.register;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moneyknowledge.R;
+import com.example.moneyknowledge.activities.LessonsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.moneyknowledge.R;
+import com.example.moneyknowledge.activities.register.LogInActivity;
 
 public class MainActivity extends AppCompatActivity {
 

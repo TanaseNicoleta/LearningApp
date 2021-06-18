@@ -3,7 +3,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_profile"
+            android:id="@+id/nav_profile_text"
             android:title="@string/profile"
             android:icon="@drawable/ic_baseline_person_24">
 
@@ -13,8 +13,8 @@
                     android:title="@string/log_out"
                     android:icon="@drawable/ic_baseline_arrow_back_24"/>
 
-                <item android:id="@+id/nav_update"
-                    android:title="@string/update"
+                <item android:id="@+id/nav_profile"
+                    android:title="@string/my_profile"
                     android:icon="@drawable/ic_baseline_edit_24"/>
                 </group>
             </menu>
@@ -31,13 +31,8 @@
             android:icon="@drawable/ic_baseline_multiline_chart_24"/>
 
         <item
-            android:id="@+id/nav_ecNews"
-            android:title="@string/economical_news"
-            android:icon="@drawable/ic_baseline_monetization_on_24"/>
-
-        <item
-            android:id="@+id/nav_questions"
-            android:title="@string/any_questions"
+            android:id="@+id/nav_contact"
+            android:title="@string/contact_us"
             android:icon="@drawable/ic_baseline_comment_24"/>
     </group>
 

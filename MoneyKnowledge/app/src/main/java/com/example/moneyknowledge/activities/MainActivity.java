@@ -15,7 +15,7 @@ import com.example.moneyknowledge.activities.register.LogInActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnConnect, btnGuest;
+    Button btnConnect;
     ImageView logo;
     Animation topAnimation;
 
@@ -24,14 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initComponents();
-
-        btnGuest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LessonsActivity.class);
-                startActivity(intent);
-            }
-        });
 
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         logo = findViewById(R.id.logo);
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         logo.setAnimation(topAnimation);
-        btnGuest = findViewById(R.id.btn_Guest);
         btnConnect = findViewById(R.id.btn_connect);
     }
 }

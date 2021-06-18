@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:openDrawer="start"
-    tools:context=".activities.LessonsActivity">
+    tools:context=".activities.LessonsActivity"
+    android:background="@drawable/gradient_categorii">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,6 +17,7 @@
         />
 
     <com.google.android.material.navigation.NavigationView
+        android:background="@color/purple"
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -24,21 +26,117 @@
         app:menu="@menu/main_menu"
         />
 
-   <androidx.constraintlayout.widget.ConstraintLayout
+   <ScrollView
        android:layout_width="match_parent"
        android:layout_height="match_parent">
 
-       <Button
-           android:id="@+id/btnEconomie"
-           android:layout_width="200dp"
-           android:layout_height="40dp"
-           app:layout_constraintTop_toTopOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           android:text="@string/economie"
-           android:textColor="@color/white"
-           />
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_margin="10dp"
+         android:orientation="vertical"
+        >
 
-   </androidx.constraintlayout.widget.ConstraintLayout>
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/categories"
+             android:textSize="30sp"
+             android:textColor="@color/white"
+             android:layout_gravity="center"
+             android:textAllCaps="true"
+             android:padding="10dp"
+             />
+
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="120dp"
+             android:layout_margin="20dp"
+             android:background="@drawable/round_borders_economy"
+             >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/economie"
+                 android:textSize="30sp"
+                 android:textColor="@color/white"
+                 android:paddingLeft="110dp"
+                 />
+
+             <Button
+                 android:id="@+id/btnEconomie"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentBottom="true"
+                 android:background="@color/black_transp"
+                 android:textSize="20sp"
+                 android:layout_margin="7dp"
+                 android:text="@string/expand"
+                 />
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="120dp"
+             android:layout_margin="20dp"
+             android:background="@drawable/round_border_finance"
+             >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/finante"
+                 android:textSize="30sp"
+                 android:textColor="@color/white"
+                 android:paddingLeft="110dp"
+                 />
+
+             <Button
+                 android:id="@+id/btnFinante"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentBottom="true"
+                 android:background="@color/black_transp"
+                 android:textSize="20sp"
+                 android:layout_margin="7dp"
+                 android:text="@string/expand"
+                 />
+         </RelativeLayout>
+
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="120dp"
+             android:layout_margin="20dp"
+             android:background="@drawable/round_borders_contabilitate"
+             >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/contabilitate"
+                 android:textSize="30sp"
+                 android:textColor="@color/white"
+                 android:paddingLeft="110dp"
+                 />
+
+             <Button
+                 android:id="@+id/btnContabilitate"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentBottom="true"
+                 android:background="@color/black_transp"
+                 android:textSize="20sp"
+                 android:layout_margin="7dp"
+                 android:text="@string/expand"
+                 />
+         </RelativeLayout>
+
+
+     </LinearLayout>
+
+   </ScrollView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

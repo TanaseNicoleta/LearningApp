@@ -36,4 +36,8 @@
     <string name="economie">Economie</string>
     <string name="my_profile">My profile</string>
     <string name="contact_us">Contact us</string>
+    <string name="categories">Categories</string>
+    <string name="expand">Expand</string>
+    <string name="finante">Finante</string>
+    <string name="contabilitate">Contabilitate</string>
 </resources>

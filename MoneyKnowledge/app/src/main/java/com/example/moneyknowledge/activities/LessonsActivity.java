@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.example.moneyknowledge.R;
 import com.google.android.material.navigation.NavigationView;
@@ -19,15 +20,24 @@ public class LessonsActivity extends AppCompatActivity implements NavigationView
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
+    Button btnEconomie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lessons);
+        initMenuComponents();
         initComponents();
     }
 
     private void initComponents() {
+        btnEconomie = findViewById(R.id.btnEconomie);
+    }
+
+
+
+    //Drawer Menu
+    private void initMenuComponents() {
        drawerLayout = findViewById(R.id.drawer_layout);
        navView = findViewById(R.id.nav_view);
        toolbar = findViewById(R.id.toolbar);
@@ -58,23 +68,23 @@ public class LessonsActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()) {
             case R.id.nav_logOut:
                 FirebaseAuth.getInstance().signOut();
-                Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intentMain = new Intent(this, MainActivity.class);
                 startActivity(intentMain);
                 break;
             case R.id.nav_profile:
-                Intent intentProfile = new Intent(getApplicationContext(), MyProfileActivity.class);
+                Intent intentProfile = new Intent(this, MyProfileActivity.class);
                 startActivity(intentProfile);
                 break;
             case R.id.nav_lessons:
-                Intent intentLessons = new Intent(getApplicationContext(), LessonsActivity.class);
+                Intent intentLessons = new Intent(this, LessonsActivity.class);
                 startActivity(intentLessons);
                 break;
             case R.id.nav_reports:
-                Intent intentReports = new Intent(getApplicationContext(), ReportsActivity.class);
+                Intent intentReports = new Intent(this, ReportsActivity.class);
                 startActivity(intentReports);
                 break;
             case R.id.nav_contact:
-                Intent intentMessages = new Intent(getApplicationContext(), MessageActivity.class);
+                Intent intentMessages = new Intent(this, MessageActivity.class);
                 startActivity(intentMessages);
                 break;
         }

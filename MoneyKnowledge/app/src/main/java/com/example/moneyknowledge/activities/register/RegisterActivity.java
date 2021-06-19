@@ -25,7 +25,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText name, email, phone, birthDate, password;
     private Button btnRegister;
-    private List<User> users;
     private FirebaseAuth mAuth;
 
     @Override

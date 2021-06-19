@@ -30,6 +30,7 @@
         android:padding="10dp"
         android:text="@string/connect"
         android:textSize="30dp"
+        android:background="@drawable/round_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"

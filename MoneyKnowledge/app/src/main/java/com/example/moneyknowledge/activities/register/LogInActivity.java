@@ -30,7 +30,7 @@ public class LogInActivity extends AppCompatActivity {
 
     private EditText email, password;
     private TextView tvForgotPass;
-    private Button btnConnect;
+    private Button btnConnect, btnRegister;
     private FirebaseAuth mAuth;
     private Switch switchBtn;
     private SharedPreferences preferences;
@@ -79,6 +79,14 @@ public class LogInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initComponents() {
@@ -86,6 +94,7 @@ public class LogInActivity extends AppCompatActivity {
         email = findViewById(R.id.tietEmail);
         password = findViewById(R.id.tietPassword);
         btnConnect = findViewById(R.id.btnLogIn);
+        btnRegister = findViewById(R.id.btnRegister);
         switchBtn=findViewById(R.id.rememberMeSwitch);
         preferences=getSharedPreferences(SHARED_PREF_USER, MODE_PRIVATE);
         getUserDetailsFromSharedPref();

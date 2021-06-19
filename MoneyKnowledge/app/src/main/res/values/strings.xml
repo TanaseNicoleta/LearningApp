@@ -40,4 +40,6 @@
     <string name="expand">Expand</string>
     <string name="finante">Finante</string>
     <string name="contabilitate">Contabilitate</string>
+    <string name="renunta">Renunta</string>
+    <string name="salveaza">Salveaza</string>
 </resources>

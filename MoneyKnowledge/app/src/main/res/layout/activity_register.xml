@@ -7,7 +7,6 @@
     tools:context=".activities.register.RegisterActivity"
     android:background="@drawable/back">
 
-    <!--Birth date fa-l un pop-up cu datePicker-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilName"
@@ -24,7 +23,10 @@
             android:id="@+id/tietName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name" />
+            android:hint="@string/name"
+            android:drawableStart="@drawable/ic_baseline_person_24"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:padding="20dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -36,13 +38,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilName"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="15dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:padding="20dp"
             android:id="@+id/tietEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email" />
+            android:hint="@string/email"
+             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -54,14 +60,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilEmail"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="15dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/phone"
-            android:inputType="phone"/>
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_baseline_phone_24"
+            android:drawableLeft="@drawable/ic_baseline_phone_24"
+            android:padding="20dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -73,13 +82,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilPhone"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="15dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietBirthDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/birth_date" />
+            android:hint="@string/birth_date"
+            android:drawableStart="@drawable/ic_baseline_cake_24"
+            android:drawableLeft="@drawable/ic_baseline_cake_24"
+            android:padding="20dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +103,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilBirthDate"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -99,7 +111,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:padding="20dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

@@ -1,9 +1,12 @@
 package com.example.moneyknowledge.model;
 
+import android.net.Uri;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
     private String id, name, email, phone, birthDate, password;
+    private String imageUri;
 
     public User() {
     }

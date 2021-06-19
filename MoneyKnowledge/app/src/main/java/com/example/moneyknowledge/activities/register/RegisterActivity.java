@@ -3,6 +3,8 @@ package com.example.moneyknowledge.activities.register;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -18,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -26,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText name, email, phone, birthDate, password;
     private Button btnRegister;
     private FirebaseAuth mAuth;
+    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,9 @@ public class RegisterActivity extends AppCompatActivity {
                     final String Phone = phone.getText().toString().trim();
                     final String Password = password.getText().toString().trim();
                     final String BirthDate = birthDate.getText().toString().trim();
+                    Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                            "://" + getResources().getResourcePackageName(R.drawable.user)
+                            + '/' + getResources().getResourceTypeName(R.drawable.user) + '/' + getResources().getResourceEntryName(R.drawable.user) );
 
                     mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -62,6 +70,9 @@ public class RegisterActivity extends AppCompatActivity {
                                             Toast.makeText(RegisterActivity.this, R.string.msj_error, Toast.LENGTH_SHORT).show();
                                     }
                                 });
+
+                                StorageReference fileReference = storageReference.child("users/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/profile.jpg");
+                                fileReference.putFile(imageUri);
                             }
                         }
                     });

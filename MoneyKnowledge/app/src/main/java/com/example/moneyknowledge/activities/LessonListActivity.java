@@ -8,29 +8,123 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.moneyknowledge.R;
+import com.example.moneyknowledge.activities.register.RegisterActivity;
+import com.example.moneyknowledge.adapter.LessonsListAdapter;
+import com.example.moneyknowledge.model.Lesson;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LessonListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String ECONOMIE = "Economie";
+    public static final String CATEGORY = "Category";
+    public static final String CONTABILITATE = "Contabilitate";
+    public static final String FINANTE = "Finante";
+    public static final String LESSONS = "lessons";
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
     Intent intent;
     String category;
-    public static final String CATEGORY = "Category";
+    ListView lvLessons;
+    TextView tvTitle;
+    ImageView ivLessonIcon;
+    List<Lesson> lessons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_list);
-        initMenuComponents();
         intent = getIntent();
         category = intent.getStringExtra(CATEGORY);
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference(LESSONS);
+
+        Lesson lesson1 = new Lesson("lectie-1", "Contabilitate 1", "Lorem ipsum", ECONOMIE);
+        lessons.add(lesson1);
+
+        getDataFromFirebase();
+        initMenuComponents();
+        initComponents();
+
+        //Fa onItemClickListener sa deschida Activitate cu lectia
+       // lvBank.setOnItemClickListener(openEditBankDialog());
+
     }
+
+    private void getDataFromFirebase() {
+
+    }
+
+    private void initComponents() {
+        lvLessons = findViewById(R.id.lv_lessonList);
+        tvTitle = findViewById(R.id.titleLesson);
+        tvTitle.setText(category);
+        ivLessonIcon = findViewById(R.id.imageLesson);
+        switch (category){
+            case CONTABILITATE:
+                ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.contabilitate_student));
+                break;
+            case ECONOMIE:
+                ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.econ_student));
+                break;
+            case FINANTE:
+                ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.finante_student));
+                break;
+            default:
+                ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.education_002));
+        }
+
+        LessonsListAdapter adapter = new LessonsListAdapter(getApplicationContext(), R.layout.lv_lessons, lessons, getLayoutInflater());
+        lvLessons.setAdapter(adapter);
+
+//        implementeaza onitemclicklistener
+//        lvLessons.setOnItemClickListener(openEditBankDialog());
+
+    }
+
+    private void notifyAdapter() {
+        ArrayAdapter adapter = (LessonsListAdapter) lvLessons.getAdapter();
+        adapter.notifyDataSetChanged();
+    }
+
+//    private AdapterView.OnItemClickListener openEditBankDialog() {
+//        AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Bank clickedBanca = (Bank) adapterView.getItemAtPosition(i);
+//                EditBankDialog editBankDialog = new EditBankDialog();
+//                editBankDialog.show(getSupportFragmentManager(), getString(R.string.dialog_edit_commission));
+//                clickedPreferences = getSharedPreferences(UPDATED_BANKS, MODE_PRIVATE);
+//                SharedPreferences.Editor e = clickedPreferences.edit();
+//                e.clear();
+//                e.putString(String.valueOf(i), clickedBanca.toString());
+//                e.commit();
+//            }
+//        };
+//        return onItemClickListener;
+//
+//    }
 
     //Drawer Menu
     private void initMenuComponents() {

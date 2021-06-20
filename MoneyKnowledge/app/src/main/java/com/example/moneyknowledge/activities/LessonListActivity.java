@@ -1,6 +1,7 @@
 package com.example.moneyknowledge.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,17 +25,23 @@ import com.example.moneyknowledge.R;
 import com.example.moneyknowledge.activities.register.RegisterActivity;
 import com.example.moneyknowledge.adapter.LessonsListAdapter;
 import com.example.moneyknowledge.model.Lesson;
+import com.example.moneyknowledge.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LessonListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String ECONOMIE = "Economie";
@@ -42,6 +49,9 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
     public static final String CONTABILITATE = "Contabilitate";
     public static final String FINANTE = "Finante";
     public static final String LESSONS = "lessons";
+    final DatabaseReference database = FirebaseDatabase.getInstance().getReference(LESSONS);
+    private static LessonsListAdapter adapter;
+
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
@@ -50,7 +60,7 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
     ListView lvLessons;
     TextView tvTitle;
     ImageView ivLessonIcon;
-    List<Lesson> lessons = new ArrayList<>();
+    List<String> lessons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,21 +68,11 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
         setContentView(R.layout.activity_lesson_list);
         intent = getIntent();
         category = intent.getStringExtra(CATEGORY);
-        final DatabaseReference database = FirebaseDatabase.getInstance().getReference(LESSONS);
-
-        Lesson lesson1 = new Lesson("lectie-1", "Contabilitate 1", "Lorem ipsum", ECONOMIE);
-        lessons.add(lesson1);
-
-        getDataFromFirebase();
         initMenuComponents();
         initComponents();
 
         //Fa onItemClickListener sa deschida Activitate cu lectia
        // lvBank.setOnItemClickListener(openEditBankDialog());
-
-    }
-
-    private void getDataFromFirebase() {
 
     }
 
@@ -95,7 +95,10 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
                 ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.education_002));
         }
 
-        LessonsListAdapter adapter = new LessonsListAdapter(getApplicationContext(), R.layout.lv_lessons, lessons, getLayoutInflater());
+        for(int i = 1; i <= 5; i++) {
+            lessons.add(category + " " + i);
+        }
+         adapter = new LessonsListAdapter(getApplicationContext(), R.layout.lv_lessons, lessons, getLayoutInflater());
         lvLessons.setAdapter(adapter);
 
 //        implementeaza onitemclicklistener

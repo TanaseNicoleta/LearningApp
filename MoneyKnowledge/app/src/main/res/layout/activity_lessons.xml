@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:openDrawer="start"
     tools:context=".activities.LessonsActivity"
-    android:background="@drawable/gradient_categorii">
+    android:background="@drawable/back">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

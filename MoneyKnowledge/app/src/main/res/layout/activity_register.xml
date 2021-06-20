@@ -37,7 +37,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/name"
             android:padding="18dp"
-            />
+            android:drawableStart="@drawable/ic_baseline_person_24"
+            android:drawableLeft="@drawable/ic_baseline_person_24" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

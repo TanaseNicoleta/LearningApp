@@ -1,4 +1,4 @@
-package com.example.moneyknowledge.activities.dialogs;
+package com.example.moneyknowledge.dialogs;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

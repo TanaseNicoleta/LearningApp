@@ -10,93 +10,44 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.example.moneyknowledge.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LessonsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String ECONOMIE = "Economie";
-    public static final String CATEGORY = "Category";
-    public static final String CONTABILITATE = "Contabilitate";
-    public static final String FINANTE = "Finante";
+public class LessonListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
-    Button btnEconomy, btnAccounting, btnFinance;
+    Intent intent;
+    String category;
+    public static final String CATEGORY = "Category";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lessons);
+        setContentView(R.layout.activity_lesson_list);
         initMenuComponents();
-        initComponents();
+        intent = getIntent();
+        category = intent.getStringExtra(CATEGORY);
     }
-
-    private void initComponents() {
-        btnEconomy = findViewById(R.id.btnEconomie);
-        btnAccounting = findViewById(R.id.btnContabilitate);
-        btnFinance = findViewById(R.id.btnFinante);
-
-        btnEconomy.setOnClickListener(openEconomyList());
-        btnAccounting.setOnClickListener(openAccountingList());
-        btnFinance.setOnClickListener(openFinanceList());
-    }
-
-    private View.OnClickListener openFinanceList() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LessonListActivity.class);
-                intent.putExtra(CATEGORY, FINANTE);
-                startActivity(intent);
-            }
-        };
-    }
-
-    private View.OnClickListener openAccountingList() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LessonListActivity.class);
-                intent.putExtra(CATEGORY, CONTABILITATE);
-                startActivity(intent);
-            }
-        };
-    }
-
-
-    private View.OnClickListener openEconomyList() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LessonListActivity.class);
-                intent.putExtra(CATEGORY, ECONOMIE);
-                startActivity(intent);
-            }
-        };
-    }
-
-
 
     //Drawer Menu
     private void initMenuComponents() {
-       drawerLayout = findViewById(R.id.drawer_layout);
-       navView = findViewById(R.id.nav_view);
-       toolbar = findViewById(R.id.toolbar);
-       toolbar.setTitle("");
-       setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
 
-       //Navigation drawer menu
+        //Navigation drawer menu
         navView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         navView.setNavigationItemSelectedListener(this);
-        navView.setCheckedItem(R.id.nav_lessons);
+        navView.setCheckedItem(R.id.nav_contact);
     }
 
     @Override
@@ -137,4 +88,5 @@ public class LessonsActivity extends AppCompatActivity implements NavigationView
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

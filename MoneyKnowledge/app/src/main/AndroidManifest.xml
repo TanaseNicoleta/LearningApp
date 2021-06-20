@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyKnowledge">
-        <activity android:name=".activities.MessageActivity"></activity>
+        <activity android:name=".activities.LessonListActivity"></activity>
+        <activity android:name=".activities.MessageActivity" />
         <activity android:name=".activities.ReportsActivity" />
         <activity android:name=".activities.MyProfileActivity" />
         <activity android:name=".activities.register.RegisterActivity" />
@@ -21,8 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LessonsActivity" >
-        </activity>
+        <activity android:name=".activities.LessonsActivity"></activity>
         <activity android:name=".activities.register.ForgotPasswordActivity" />
     </application>
 

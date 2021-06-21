@@ -1,17 +1,38 @@
 package com.example.moneyknowledge.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Question implements Serializable {
     private String id, id_lesson, question;
+    private List<String> answers;
+    private String correctAnswer;
 
     public Question() {
     }
 
-    public Question(String id, String id_lesson, String question) {
+    public Question(String id, String id_lesson, String question, List<String> answers, String correctAnswer) {
         this.id = id;
         this.id_lesson = id_lesson;
         this.question = question;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
+    }
+
+    public List<String> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<String> answers) {
+        this.answers = answers;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public String getId() {

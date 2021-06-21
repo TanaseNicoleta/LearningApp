@@ -42,6 +42,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 public class ReadLessonActivity extends AppCompatActivity{
+    public static final String LESSON_ID = "lessonId";
     ImageView image;
     TextView content;
     Intent intent;
@@ -74,10 +75,11 @@ public class ReadLessonActivity extends AppCompatActivity{
         openTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                intent.putExtra(LESSON_ID, lessonId);
+                startActivity(intent);
             }
         });
-
 
         notes.setOnClickListener(openNotesDialog());
     }
@@ -86,7 +88,7 @@ public class ReadLessonActivity extends AppCompatActivity{
         AdapterView.OnClickListener onClickListener = view -> {
             AddNoteDialog addNoteDialog = new AddNoteDialog();
             Bundle bundle = new Bundle();
-            bundle.putString("lessonId", lessonId);
+            bundle.putString(LESSON_ID, lessonId);
             addNoteDialog.setArguments(bundle);
             addNoteDialog.show(getSupportFragmentManager(), String.valueOf(R.id.openNotes));
         };

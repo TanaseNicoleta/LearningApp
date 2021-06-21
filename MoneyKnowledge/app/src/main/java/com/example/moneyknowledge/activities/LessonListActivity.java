@@ -111,11 +111,6 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
 
     }
 
-    private void notifyAdapter() {
-        ArrayAdapter adapter = (LessonsListAdapter) lvLessons.getAdapter();
-        adapter.notifyDataSetChanged();
-    }
-
     //Drawer Menu
     private void initMenuComponents() {
         drawerLayout = findViewById(R.id.drawer_layout);

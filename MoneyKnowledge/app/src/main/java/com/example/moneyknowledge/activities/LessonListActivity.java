@@ -71,9 +71,14 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
         initMenuComponents();
         initComponents();
 
-        //Fa onItemClickListener sa deschida Activitate cu lectia
-       // lvBank.setOnItemClickListener(openEditBankDialog());
-
+        lvLessons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ReadLessonActivity.class);
+                intent.putExtra("id", category.toLowerCase()+"-"+Integer.toString(position+1));
+                startActivity(intent);
+            }
+        });
     }
 
     private void initComponents() {
@@ -98,11 +103,8 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
         for(int i = 1; i <= 5; i++) {
             lessons.add(category + " " + i);
         }
-         adapter = new LessonsListAdapter(getApplicationContext(), R.layout.lv_lessons, lessons, getLayoutInflater());
+        adapter = new LessonsListAdapter(getApplicationContext(), R.layout.lv_lessons, lessons, getLayoutInflater());
         lvLessons.setAdapter(adapter);
-
-//        implementeaza onitemclicklistener
-//        lvLessons.setOnItemClickListener(openEditBankDialog());
 
     }
 
@@ -110,24 +112,6 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
         ArrayAdapter adapter = (LessonsListAdapter) lvLessons.getAdapter();
         adapter.notifyDataSetChanged();
     }
-
-//    private AdapterView.OnItemClickListener openEditBankDialog() {
-//        AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Bank clickedBanca = (Bank) adapterView.getItemAtPosition(i);
-//                EditBankDialog editBankDialog = new EditBankDialog();
-//                editBankDialog.show(getSupportFragmentManager(), getString(R.string.dialog_edit_commission));
-//                clickedPreferences = getSharedPreferences(UPDATED_BANKS, MODE_PRIVATE);
-//                SharedPreferences.Editor e = clickedPreferences.edit();
-//                e.clear();
-//                e.putString(String.valueOf(i), clickedBanca.toString());
-//                e.commit();
-//            }
-//        };
-//        return onItemClickListener;
-//
-//    }
 
     //Drawer Menu
     private void initMenuComponents() {

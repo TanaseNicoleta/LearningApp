@@ -100,7 +100,6 @@ public class MyProfileActivity extends AppCompatActivity implements NavigationVi
         if (requestCode == 1000) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri uriImage = data.getData();
-               // profileImage.setImageURI(uriImage);
                 uploadImageToFirebase(uriImage);
             }
         }

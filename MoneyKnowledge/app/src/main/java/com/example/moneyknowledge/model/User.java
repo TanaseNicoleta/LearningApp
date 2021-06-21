@@ -3,10 +3,12 @@ package com.example.moneyknowledge.model;
 import android.net.Uri;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class User implements Serializable {
     private String id, name, email, phone, birthDate, password;
     private String imageUri;
+    private HashMap<Lesson, Grade> grades = new HashMap<>();
 
     public User() {
     }
@@ -66,6 +68,22 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
+    public HashMap<Lesson, Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(HashMap<Lesson, Grade> grades) {
+        this.grades = grades;
     }
 
     @Override

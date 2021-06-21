@@ -3,14 +3,14 @@ package com.example.moneyknowledge.model;
 import java.io.Serializable;
 
 public class Question implements Serializable {
-    private String id, id_test, question;
+    private String id, id_lesson, question;
 
     public Question() {
     }
 
-    public Question(String id, String id_test, String question) {
+    public Question(String id, String id_lesson, String question) {
         this.id = id;
-        this.id_test = id_test;
+        this.id_lesson = id_lesson;
         this.question = question;
     }
 
@@ -22,12 +22,12 @@ public class Question implements Serializable {
         this.id = id;
     }
 
-    public String getId_test() {
-        return id_test;
+    public String getId_lesson() {
+        return id_lesson;
     }
 
-    public void setId_test(String id_test) {
-        this.id_test = id_test;
+    public void setId_lesson(String id_lesson) {
+        this.id_lesson = id_lesson;
     }
 
     public String getQuestion() {
@@ -42,7 +42,7 @@ public class Question implements Serializable {
     public String toString() {
         return "Question{" +
                 "id='" + id + '\'' +
-                ", id_test='" + id_test + '\'' +
+                ", id_lesson='" + id_lesson + '\'' +
                 ", question='" + question + '\'' +
                 '}';
     }

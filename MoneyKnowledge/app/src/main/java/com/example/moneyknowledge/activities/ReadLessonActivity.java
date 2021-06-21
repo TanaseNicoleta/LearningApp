@@ -16,11 +16,15 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moneyknowledge.R;
+import com.example.moneyknowledge.dialogs.AddNoteDialog;
+import com.example.moneyknowledge.dialogs.UpdateUserProfileDialog;
 import com.example.moneyknowledge.model.Lesson;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,6 +47,7 @@ public class ReadLessonActivity extends AppCompatActivity{
     Intent intent;
     String lessonId;
     FloatingActionButton openTest;
+    Button notes;
 
     public static final String LESSONS = "lessons";
     final DatabaseReference database = FirebaseDatabase.getInstance().getReference(LESSONS);
@@ -54,6 +59,7 @@ public class ReadLessonActivity extends AppCompatActivity{
         setContentView(R.layout.activity_read_lesson);
         intent=getIntent();
         lessonId = intent.getStringExtra("id");
+
         initComponents();
 
         image.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +77,21 @@ public class ReadLessonActivity extends AppCompatActivity{
 
             }
         });
+
+
+        notes.setOnClickListener(openNotesDialog());
     }
 
+    private AdapterView.OnClickListener openNotesDialog() {
+        AdapterView.OnClickListener onClickListener = view -> {
+            AddNoteDialog addNoteDialog = new AddNoteDialog();
+            Bundle bundle = new Bundle();
+            bundle.putString("lessonId", lessonId);
+            addNoteDialog.setArguments(bundle);
+            addNoteDialog.show(getSupportFragmentManager(), String.valueOf(R.id.openNotes));
+        };
+        return onClickListener;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -108,11 +127,11 @@ public class ReadLessonActivity extends AppCompatActivity{
 
     }
 
-
     private void initComponents() {
         image = findViewById(R.id.lessonImage);
         content = findViewById(R.id.lessonContent);
         openTest = findViewById(R.id.openTest);
+        notes = findViewById(R.id.openNotes);
 
         database.child(lessonId).addValueEventListener(new ValueEventListener() {
             @Override

@@ -8,7 +8,6 @@ import java.util.HashMap;
 public class User implements Serializable {
     private String id, name, email, phone, birthDate, password;
     private String imageUri;
-    private HashMap<Lesson, Grade> grades = new HashMap<>();
 
     public User() {
     }
@@ -76,14 +75,6 @@ public class User implements Serializable {
 
     public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
-    }
-
-    public HashMap<Lesson, Grade> getGrades() {
-        return grades;
-    }
-
-    public void setGrades(HashMap<Lesson, Grade> grades) {
-        this.grades = grades;
     }
 
     @Override

@@ -128,6 +128,14 @@ public class ReadLessonActivity extends AppCompatActivity{
             }
         });
 
+        StorageReference bannerReference = storageReference.child("lessons/"+lessonId+"/banner.jpg");
+        bannerReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(image);
+            }
+        });
+
     }
 
 }

@@ -17,7 +17,9 @@
                 <item android:id="@+id/nav_profile"
                     android:title="@string/my_profile"
                     android:icon="@drawable/ic_baseline_edit_24"/>
+
                 </group>
+
             </menu>
         </item>
 
@@ -25,6 +27,16 @@
             android:id="@+id/nav_lessons"
             android:title="@string/lessons"
             android:icon="@drawable/ic_baseline_menu_book_24"/>
+
+        <item
+            android:id="@+id/nav_notes"
+            android:title="@string/notitele_mele"
+            android:icon="@drawable/ic_baseline_sticky_note_2_24"/>
+
+        <item
+            android:id="@+id/nav_grades"
+            android:title="@string/note"
+            android:icon="@drawable/ic_baseline_grade_24"/>
 
         <item
             android:id="@+id/nav_reports"

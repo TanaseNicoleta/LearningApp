@@ -38,13 +38,7 @@
                android:gravity="center"
                android:layout_marginTop="20dp"
                android:layout_marginBottom="20dp">
-
-               <ImageView
-                   android:id="@+id/imageLesson"
-                   android:layout_width="80dp"
-                   android:layout_height="80dp"
-                   />
-
+               
                <TextView
                    android:id="@+id/titleLesson"
                    android:layout_width="wrap_content"
@@ -55,6 +49,13 @@
                    android:textAllCaps="true"
                    android:padding="10dp"
                    />
+
+               <ImageView
+                   android:id="@+id/imageLesson"
+                   android:layout_width="80dp"
+                   android:layout_height="80dp"
+                   />
+
            </LinearLayout>
 
 

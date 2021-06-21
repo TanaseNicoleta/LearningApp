@@ -15,7 +15,7 @@ import com.example.moneyknowledge.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ReportsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class GradesListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
@@ -23,11 +23,9 @@ public class ReportsActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reports);
+        setContentView(R.layout.activity_grades_list);
         initMenuComponents();
-
     }
-
 
     //Drawer Menu
     private void initMenuComponents() {
@@ -44,7 +42,7 @@ public class ReportsActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
         navView.setNavigationItemSelectedListener(this);
-        navView.setCheckedItem(R.id.nav_reports);
+        navView.setCheckedItem(R.id.nav_contact);
     }
 
     @Override

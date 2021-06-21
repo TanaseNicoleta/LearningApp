@@ -10,18 +10,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.moneyknowledge.R;
 import com.example.moneyknowledge.adapter.LessonsListAdapter;
+import com.example.moneyknowledge.adapter.NoteAdapter;
 import com.example.moneyknowledge.model.Lesson;
+import com.example.moneyknowledge.model.Notes;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,76 +29,36 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LessonListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String ECONOMIE = "Economie";
-    public static final String CATEGORY = "Category";
-    public static final String CONTABILITATE = "Contabilitate";
-    public static final String FINANTE = "Finante";
-    public static final String LESSONS = "lessons";
-    final DatabaseReference database = FirebaseDatabase.getInstance().getReference(LESSONS);
-    private static LessonsListAdapter adapter;
-
+public class MyNotesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    public static final String NOTES = "notes";
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
 
-    ListView lvLessons;
-    TextView tvTitle;
-    ImageView ivLessonIcon;
-    List<Lesson> lessons = new ArrayList<>();
-
-    Intent intent;
-    String category;
+    ListView lvNotes;
+    List<Notes> notes = new ArrayList<>();
+    NoteAdapter adapter;
+    final DatabaseReference database = FirebaseDatabase.getInstance().getReference(NOTES);
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    final String userId = user.getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lesson_list);
-        intent = getIntent();
-        category = intent.getStringExtra(CATEGORY);
+        setContentView(R.layout.activity_my_notes);
         initMenuComponents();
-        initComponents();
+        lvNotes = findViewById(R.id.lv_notes);
 
-        lvLessons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Lesson lesson = (Lesson) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getApplicationContext(), ReadLessonActivity.class);
-                intent.putExtra("id", lesson.getId());
-                startActivity(intent);
-            }
-        });
-    }
-
-    private void initComponents() {
-        lvLessons = findViewById(R.id.lv_lessonList);
-        tvTitle = findViewById(R.id.titleLesson);
-        tvTitle.setText(category);
-        ivLessonIcon = findViewById(R.id.imageLesson);
-        switch (category){
-            case CONTABILITATE:
-                ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.contabilitate_student));
-                break;
-            case ECONOMIE:
-                ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.econ_student));
-                break;
-            case FINANTE:
-                ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.finante_student));
-                break;
-            default:
-                ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.education_002));
-        }
-
-        adapter = new LessonsListAdapter(getApplicationContext(), R.layout.lv_lessons, lessons, getLayoutInflater());
-        lvLessons.setAdapter(adapter);
+        adapter = new NoteAdapter(getApplicationContext(), R.layout.lv_note, notes, getLayoutInflater());
+        lvNotes.setAdapter(adapter);
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Lesson lesson = dataSnapshot.getValue(Lesson.class);
-                    if(lesson.getCategory().equals(category))
-                        lessons.add(lesson);
+                    Notes note = dataSnapshot.getValue(Notes.class);
+                    if(note.getId_user().equals(userId))
+                        notes.add(note);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -128,7 +86,7 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
         toggle.syncState();
 
         navView.setNavigationItemSelectedListener(this);
-        navView.setCheckedItem(R.id.nav_lessons);
+        navView.setCheckedItem(R.id.nav_contact);
     }
 
     @Override
@@ -177,5 +135,4 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }

@@ -206,6 +206,14 @@ public class MyProfileActivity extends AppCompatActivity implements NavigationVi
                 Intent intentMessages = new Intent(this, MessageActivity.class);
                 startActivity(intentMessages);
                 break;
+            case R.id.nav_grades:
+                Intent intentGrades = new Intent(this, GradesListActivity.class);
+                startActivity(intentGrades);
+                break;
+            case R.id.nav_notes:
+                Intent intentNotes = new Intent(this, MyNotesActivity.class);
+                startActivity(intentNotes);
+                break;
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

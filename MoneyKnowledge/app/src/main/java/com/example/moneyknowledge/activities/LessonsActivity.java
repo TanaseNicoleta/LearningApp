@@ -67,7 +67,6 @@ public class LessonsActivity extends AppCompatActivity implements NavigationView
         };
     }
 
-
     private View.OnClickListener openEconomyList() {
         return new View.OnClickListener() {
             @Override
@@ -78,8 +77,6 @@ public class LessonsActivity extends AppCompatActivity implements NavigationView
             }
         };
     }
-
-
 
     //Drawer Menu
     private void initMenuComponents() {
@@ -131,6 +128,14 @@ public class LessonsActivity extends AppCompatActivity implements NavigationView
             case R.id.nav_contact:
                 Intent intentMessages = new Intent(this, MessageActivity.class);
                 startActivity(intentMessages);
+                break;
+            case R.id.nav_grades:
+                Intent intentGrades = new Intent(this, GradesListActivity.class);
+                startActivity(intentGrades);
+                break;
+            case R.id.nav_notes:
+                Intent intentNotes = new Intent(this, MyNotesActivity.class);
+                startActivity(intentNotes);
                 break;
         }
 

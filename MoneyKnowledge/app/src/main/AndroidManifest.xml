@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyKnowledge">
-        <activity android:name=".activities.ReadLessonActivity"></activity>
+        <activity android:name=".activities.ReadLessonActivity" />
         <activity android:name=".activities.LessonListActivity" />
         <activity android:name=".activities.MessageActivity" />
         <activity android:name=".activities.ReportsActivity" />

@@ -15,13 +15,13 @@ import com.example.moneyknowledge.model.Lesson;
 
 import java.util.List;
 
-public class LessonsListAdapter extends ArrayAdapter<String> {
+public class LessonsListAdapter extends ArrayAdapter<Lesson> {
     private Context context;
     private int resource;
-    private List<String> lessons;
+    private List<Lesson> lessons;
     private LayoutInflater inflater;
 
-    public LessonsListAdapter(@NonNull Context context, int resource, @NonNull List<String> objects, LayoutInflater inflater) {
+    public LessonsListAdapter(@NonNull Context context, int resource, @NonNull List<Lesson> objects, LayoutInflater inflater) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -33,11 +33,11 @@ public class LessonsListAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = inflater.inflate(resource, parent, false);
-        String lesson = lessons.get(position);
+        Lesson lesson = lessons.get(position);
 
         //Seteaza si progresul automat din firebase
         if(lesson != null) {
-            addLessonName(view, lesson);
+            addLessonName(view, lesson.getTitle());
         }
 
         return view;
@@ -55,6 +55,4 @@ public class LessonsListAdapter extends ArrayAdapter<String> {
             textView.setText(R.string.msj_error);
         }
     }
-
-
 }

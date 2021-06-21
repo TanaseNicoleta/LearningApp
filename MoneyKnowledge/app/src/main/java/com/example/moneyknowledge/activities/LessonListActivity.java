@@ -1,7 +1,6 @@
 package com.example.moneyknowledge.activities;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,9 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,29 +16,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.moneyknowledge.R;
-import com.example.moneyknowledge.activities.register.RegisterActivity;
 import com.example.moneyknowledge.adapter.LessonsListAdapter;
 import com.example.moneyknowledge.model.Lesson;
-import com.example.moneyknowledge.model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class LessonListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String ECONOMIE = "Economie";
@@ -60,7 +48,7 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
     ListView lvLessons;
     TextView tvTitle;
     ImageView ivLessonIcon;
-    List<String> lessons = new ArrayList<>();
+    List<Lesson> lessons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +62,9 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
         lvLessons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Lesson lesson = (Lesson) parent.getItemAtPosition(position);
                 Intent intent = new Intent(getApplicationContext(), ReadLessonActivity.class);
-                intent.putExtra("id", category.toLowerCase()+"-"+Integer.toString(position+1));
+                intent.putExtra("id", lesson.getId());
                 startActivity(intent);
             }
         });
@@ -100,11 +89,25 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
                 ivLessonIcon.setImageDrawable(getResources().getDrawable(R.drawable.education_002));
         }
 
-        for(int i = 1; i <= 5; i++) {
-            lessons.add(category + " " + i);
-        }
         adapter = new LessonsListAdapter(getApplicationContext(), R.layout.lv_lessons, lessons, getLayoutInflater());
         lvLessons.setAdapter(adapter);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Lesson lesson = dataSnapshot.getValue(Lesson.class);
+                    if(lesson.getCategory().equals(category))
+                        lessons.add(lesson);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 

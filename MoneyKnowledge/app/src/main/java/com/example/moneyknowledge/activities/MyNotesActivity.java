@@ -86,7 +86,7 @@ public class MyNotesActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
         navView.setNavigationItemSelectedListener(this);
-        navView.setCheckedItem(R.id.nav_contact);
+        navView.setCheckedItem(R.id.nav_notes);
     }
 
     @Override

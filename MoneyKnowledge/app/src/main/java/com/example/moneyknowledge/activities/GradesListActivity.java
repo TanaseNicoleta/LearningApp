@@ -42,7 +42,7 @@ public class GradesListActivity extends AppCompatActivity implements NavigationV
         toggle.syncState();
 
         navView.setNavigationItemSelectedListener(this);
-        navView.setCheckedItem(R.id.nav_contact);
+        navView.setCheckedItem(R.id.nav_grades);
     }
 
     @Override

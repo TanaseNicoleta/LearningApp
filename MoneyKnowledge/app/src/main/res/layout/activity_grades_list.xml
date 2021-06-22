@@ -25,10 +25,31 @@
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu"
         />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tv_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/note"
+            android:textColor="@color/white"
+            android:textSize="35dp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ListView
+            android:id="@+id/lv_grades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_note"
+            android:layout_marginTop="20dp"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

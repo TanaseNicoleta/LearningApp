@@ -14,10 +14,14 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.moneyknowledge.R;
 import com.example.moneyknowledge.model.Notes;
+import com.example.moneyknowledge.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddNoteDialog extends AppCompatDialogFragment {
     public static final String NOTES = "notes";
@@ -41,6 +45,22 @@ public class AddNoteDialog extends AppCompatDialogFragment {
         lessonId = bundle.getString("lessonId","");
 
         tvAddNote = view.findViewById(R.id.tv_addNotes);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Notes note = dataSnapshot.getValue(Notes.class);
+                    if(note.getId_user().equals(userId) && note.getId_lesson().equals(lessonId))
+                        tvAddNote.setText(note.getNote());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         builder.setView(view)
                 .setTitle(R.string.notite)

@@ -6,32 +6,34 @@
 
 
     <LinearLayout
-        android:backgroundTint="@color/transparentRose"
+        android:backgroundTint="@color/black_transp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical"
         android:background="@drawable/round_border_lesson"
+        android:padding="20dp"
         >
 
         <TextView
             android:id="@+id/lesson_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textSize="14dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"
             />
 
         <TextView
             android:id="@+id/noteContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
             />
 
 

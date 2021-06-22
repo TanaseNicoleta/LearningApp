@@ -52,15 +52,21 @@ public class LessonsListAdapter extends ArrayAdapter<Lesson> {
         populateTV(lesson.getTitle(), textView);
         SeekBar sb = view.findViewById(R.id.setProgressSB);
 
+        TextView tvProgres = view.findViewById(R.id.tvProgres);
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     LessonProgress grade = dataSnapshot.getValue(LessonProgress.class);
-                    if(grade.getId_user().equals(userId) && grade.getId_lesson().equals(lesson.getId()))
+                    if(grade.getId_user().equals(userId) && grade.getId_lesson().equals(lesson.getId())) {
                         sb.setProgress(grade.getProgress());
-                    else
+                        tvProgres.setText("Progres: " + Integer.toString(grade.getProgress()) + "%");
+                    } else {
                         sb.setProgress(0);
+                        tvProgres.setText("Progres: 0%");
+                    }
+
 
                 }
 

@@ -22,7 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class LessonsListAdapter extends ArrayAdapter<Lesson> {
     public static final String NOTE = "note";
@@ -34,6 +37,8 @@ public class LessonsListAdapter extends ArrayAdapter<Lesson> {
     final DatabaseReference database = FirebaseDatabase.getInstance().getReference(NOTE);
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     final String userId = user.getUid();
+    final DatabaseReference databaseGrades = FirebaseDatabase.getInstance().getReference(NOTE);
+
 
     public LessonsListAdapter(@NonNull Context context, int resource, @NonNull List<Lesson> objects, LayoutInflater inflater) {
         super(context, resource, objects);
@@ -54,26 +59,46 @@ public class LessonsListAdapter extends ArrayAdapter<Lesson> {
 
         TextView tvProgres = view.findViewById(R.id.tvProgres);
 
-        database.addValueEventListener(new ValueEventListener() {
+//        database.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    LessonProgress grade = dataSnapshot.getValue(LessonProgress.class);
+//                    if(grade.getId_user().equals(userId) && grade.getId_lesson().equals(lesson.getId())) {
+//                        sb.setProgress(grade.getProgress());
+//                        tvProgres.setText("Progres: " + Integer.toString(grade.getProgress()) + "%");
+//                    } else {
+//                        sb.setProgress(0);
+//                        tvProgres.setText("Progres: 0%");
+//                    }
+//
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    LessonProgress grade = dataSnapshot.getValue(LessonProgress.class);
-                    if(grade.getId_user().equals(userId) && grade.getId_lesson().equals(lesson.getId())) {
-                        sb.setProgress(grade.getProgress());
-                        tvProgres.setText("Progres: " + Integer.toString(grade.getProgress()) + "%");
-                    } else {
-                        sb.setProgress(0);
-                        tvProgres.setText("Progres: 0%");
-                    }
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                LessonProgress lp = new LessonProgress("grade_"+userId+"_"+lesson.getId(), lesson.getId(), userId, progress, currentDate);
+                databaseGrades.child(lp.getId()).setValue(lp);
+                tvProgres.setText("Progres: " + Integer.toString(sb.getProgress()) + "%");
+            }
 
-
-                }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });

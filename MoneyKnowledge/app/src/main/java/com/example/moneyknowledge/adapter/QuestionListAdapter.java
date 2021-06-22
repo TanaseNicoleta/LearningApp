@@ -57,6 +57,7 @@ public class QuestionListAdapter  extends ArrayAdapter<Question> {
             //check selected answer is correct
         }
 
+
         return view;
     }
 

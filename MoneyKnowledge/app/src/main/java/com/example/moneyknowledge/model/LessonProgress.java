@@ -6,12 +6,12 @@ import java.util.Date;
 public class LessonProgress implements Serializable {
     private String id, id_lesson, id_user;
     private int progress, grade;
-    private Date date;          // get system current date for when the grade was recorded
+    private String date;          // get system current date for when the grade was recorded
 
     public LessonProgress() {
     }
 
-    public LessonProgress(String id, String id_lesson, String id_user, int progress, int grade, Date date) {
+    public LessonProgress(String id, String id_lesson, String id_user, int progress, int grade, String date) {
         this.id = id;
         this.id_lesson = id_lesson;
         this.id_user = id_user;
@@ -20,7 +20,7 @@ public class LessonProgress implements Serializable {
         this.date = date;
     }
 
-    public LessonProgress(String id, String id_lesson, String id_user, int progress, Date date) {
+    public LessonProgress(String id, String id_lesson, String id_user, int progress, String date) {
         this.id = id;
         this.id_lesson = id_lesson;
         this.id_user = id_user;
@@ -69,11 +69,11 @@ public class LessonProgress implements Serializable {
         this.grade = grade;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

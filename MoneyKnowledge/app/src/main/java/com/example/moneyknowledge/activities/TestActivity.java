@@ -98,8 +98,12 @@ public class TestActivity extends AppCompatActivity {
                             }
                             i++;
                             readQuestions(i);
-                        } else
+                        } else {
+                            if (answ1.getText().equals(answers.getAnswers().get(0))) {
+                                nota++;
+                            }
                             openFinishActivity();
+                        }
 
                     }
 
@@ -114,8 +118,13 @@ public class TestActivity extends AppCompatActivity {
                             }
                             i++;
                             readQuestions(i);
-                        } else
+                        } else {
+                            if (answ2.getText().equals(answers.getAnswers().get(1))) {
+                                nota++;
+                            }
                             openFinishActivity();
+                        }
+
                     }
                 });
 
@@ -128,8 +137,13 @@ public class TestActivity extends AppCompatActivity {
                             }
                             i++;
                             readQuestions(i);
-                        } else
+                        } else {
+                            if (answ3.getText().equals(answers.getAnswers().get(2))) {
+                                nota++;
+                            }
                             openFinishActivity();
+                        }
+
                     }
                 });
 
@@ -142,8 +156,13 @@ public class TestActivity extends AppCompatActivity {
                             }
                             i++;
                             readQuestions(i);
-                        } else
+                        } else {
+                            if (answ4.getText().equals(answers.getAnswers().get(3))) {
+                                nota++;
+                            }
                             openFinishActivity();
+                        }
+
                     }
                 });
             }
@@ -177,11 +196,13 @@ public class TestActivity extends AppCompatActivity {
         databaseGrades.child(lessonProgress.getId()).setValue(lessonProgress);
         if (nota >= 2) {
             Toast.makeText(this, "Bravo! Ai trecut testul. Iti poti vedea notele in zona de Note.", Toast.LENGTH_SHORT).show();
-        } else
+            finish();
+        } else {
             Toast.makeText(this, "Mai incearca. Iti poti vedea notele in zona de Note.", Toast.LENGTH_SHORT).show();
-
+            finish();
+        }
     }
-    
+
     private void populateView(String question, List<String > answers) {
         tv_question.setText(question);
         answ1.setText(answers.get(0));

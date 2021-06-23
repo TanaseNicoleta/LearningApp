@@ -33,6 +33,7 @@
             android:id="@+id/tietEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
             android:drawableStart="@drawable/ic_baseline_email_24"
             android:drawableLeft="@drawable/ic_baseline_email_24"
             android:padding="18dp"
@@ -53,6 +54,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPassword"
+            android:drawablePadding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_baseline_lock_24"

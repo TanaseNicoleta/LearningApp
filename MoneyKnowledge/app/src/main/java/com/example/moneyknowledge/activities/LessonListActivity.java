@@ -15,21 +15,27 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.moneyknowledge.R;
 import com.example.moneyknowledge.adapter.LessonsListAdapter;
 import com.example.moneyknowledge.model.Lesson;
+import com.example.moneyknowledge.model.LessonProgress;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class LessonListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String ECONOMIE = "Economie";
@@ -37,7 +43,13 @@ public class LessonListActivity extends AppCompatActivity implements NavigationV
     public static final String CONTABILITATE = "Contabilitate";
     public static final String FINANTE = "Finante";
     public static final String LESSONS = "lessons";
+    public static final String NOTE = "note";
+
     final DatabaseReference database = FirebaseDatabase.getInstance().getReference(LESSONS);
+    final DatabaseReference databaseGrade = FirebaseDatabase.getInstance().getReference(NOTE);
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    final String userId = user.getUid();
+
     private static LessonsListAdapter adapter;
 
     DrawerLayout drawerLayout;

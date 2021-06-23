@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/name"
             android:padding="18dp"
+            android:drawablePadding="5dp"
             android:drawableStart="@drawable/ic_baseline_person_24"
             android:drawableLeft="@drawable/ic_baseline_person_24" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,6 +61,7 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:hint="@string/email"
+            android:drawablePadding="5dp"
             android:padding="18dp"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,6 +83,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/phone"
             android:inputType="phone"
+            android:drawablePadding="5dp"
             android:padding="18dp"
             android:drawableStart="@drawable/ic_baseline_phone_24"
             android:drawableLeft="@drawable/ic_baseline_phone_24"
@@ -103,6 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/birth_date"
+            android:drawablePadding="5dp"
             android:inputType="date"
             android:padding="18dp"
             android:drawableStart="@drawable/ic_baseline_cake_24"
@@ -128,6 +132,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:drawablePadding="5dp"
             android:padding="18dp"
             android:drawableStart="@drawable/ic_baseline_lock_24"
             android:drawableLeft="@drawable/ic_baseline_lock_24"

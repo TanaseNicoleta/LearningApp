@@ -20,15 +20,6 @@ public class LessonProgress implements Serializable {
         this.date = date;
     }
 
-    public LessonProgress(String id, String id_lesson, String id_user, int progress, String date) {
-        this.id = id;
-        this.id_lesson = id_lesson;
-        this.id_user = id_user;
-        this.progress = progress;
-        this.grade = 0;
-        this.date = date;
-    }
-
     public String getId() {
         return id;
     }

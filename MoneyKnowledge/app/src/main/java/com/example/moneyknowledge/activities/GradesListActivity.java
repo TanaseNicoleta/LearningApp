@@ -61,7 +61,7 @@ public class GradesListActivity extends AppCompatActivity implements NavigationV
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     LessonProgress grade = dataSnapshot.getValue(LessonProgress.class);
-                    if(grade.getId_user().equals(userId))
+                    if(grade.getId_user().equals(userId) && grade.getGrade() > 0)
                         grades.add(grade);
                 }
                 adapter.notifyDataSetChanged();

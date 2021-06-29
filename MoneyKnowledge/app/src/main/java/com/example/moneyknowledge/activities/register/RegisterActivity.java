@@ -76,8 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     });
-
-
                 } else
                     Toast.makeText(RegisterActivity.this, R.string.msj_error, Toast.LENGTH_SHORT).show();
             }

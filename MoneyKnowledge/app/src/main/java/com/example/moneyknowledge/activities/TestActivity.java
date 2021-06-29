@@ -66,7 +66,6 @@ public class TestActivity extends AppCompatActivity {
         answ4 = findViewById(R.id.answ4);
         readQuestions(1);
         setAnswerClicks();
-
     }
 
     private void setAnswerClicks() {
@@ -77,34 +76,32 @@ public class TestActivity extends AppCompatActivity {
                 answ1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(i<4) {
-                            if (answ1.getText().equals(answers.getAnswers().get(0))) {
+                        if(i<5) {
+                            if (answ1.getText().equals(answers.getAnswers().get(i-1))) {
                                 nota++;
                             }
                             i++;
                             readQuestions(i);
                         } else {
-                            if (answ1.getText().equals(answers.getAnswers().get(0))) {
+                            if (answ1.getText().equals(answers.getAnswers().get(i-1))) {
                                 nota++;
                             }
                             openFinishActivity();
                         }
-
                     }
-
                 });
 
                 answ2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(i<4) {
-                            if (answ2.getText().equals(answers.getAnswers().get(1))) {
+                        if(i<5) {
+                            if (answ2.getText().equals(answers.getAnswers().get(i-1))) {
                                 nota++;
                             }
                             i++;
                             readQuestions(i);
                         } else {
-                            if (answ2.getText().equals(answers.getAnswers().get(1))) {
+                            if (answ2.getText().equals(answers.getAnswers().get(i-1))) {
                                 nota++;
                             }
                             openFinishActivity();
@@ -116,14 +113,14 @@ public class TestActivity extends AppCompatActivity {
                 answ3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(i<4) {
-                            if (answ3.getText().equals(answers.getAnswers().get(2))) {
+                        if(i<5) {
+                            if (answ3.getText().equals(answers.getAnswers().get(i-1))) {
                                 nota++;
                             }
                             i++;
                             readQuestions(i);
                         } else {
-                            if (answ3.getText().equals(answers.getAnswers().get(2))) {
+                            if (answ3.getText().equals(answers.getAnswers().get(i-1))) {
                                 nota++;
                             }
                             openFinishActivity();
@@ -135,14 +132,14 @@ public class TestActivity extends AppCompatActivity {
                 answ4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(i<4) {
-                            if (answ4.getText().equals(answers.getAnswers().get(3))) {
+                        if(i<5) {
+                            if (answ4.getText().equals(answers.getAnswers().get(i-1))) {
                                 nota++;
                             }
                             i++;
                             readQuestions(i);
                         } else {
-                            if (answ4.getText().equals(answers.getAnswers().get(3))) {
+                            if (answ4.getText().equals(answers.getAnswers().get(i-1))) {
                                 nota++;
                             }
                             openFinishActivity();
@@ -177,9 +174,9 @@ public class TestActivity extends AppCompatActivity {
 
     private void openFinishActivity() {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        lessonProgress = new LessonProgress("grade_"+userId+"_"+lessonId, lessonId, userId, nota*10, nota, currentDate);
+        lessonProgress = new LessonProgress("grade_"+userId+"_"+lessonId, lessonId, userId, nota*100/5, nota*10/5, currentDate);
         databaseGrades.child(lessonProgress.getId()).setValue(lessonProgress);
-        if (nota >= 2) {
+        if (nota >= 5) {
             Toast.makeText(this, "Bravo! Ai trecut testul. Iti poti vedea notele in zona de Note.", Toast.LENGTH_SHORT).show();
             finish();
         } else {

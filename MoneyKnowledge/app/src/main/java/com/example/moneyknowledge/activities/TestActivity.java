@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import com.example.moneyknowledge.R;
 import com.example.moneyknowledge.model.Answers;
 import com.example.moneyknowledge.model.LessonProgress;
 import com.example.moneyknowledge.model.Question;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -31,7 +35,6 @@ public class TestActivity extends AppCompatActivity {
     public static final String LESSON_ID = "lessonId";
     public static final String INTREBARI = "intrebari";
     public static final String RASPUNSURI = "raspunsuri";
-    public static final String NOTA = "nota";
     public static final String NOTE = "note";
     LessonProgress lessonProgress;
     Intent intent;
@@ -46,7 +49,9 @@ public class TestActivity extends AppCompatActivity {
     final String userId = user.getUid();
 
     TextView tv_question, tv_nota;
-    Button answ1, answ2, answ3, answ4;
+    RadioButton answ1, answ2, answ3, answ4;
+    RadioGroup rGroup;
+    FloatingActionButton nextQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,92 +62,23 @@ public class TestActivity extends AppCompatActivity {
         initComponents();
     }
 
-    private void initComponents() {
-        tv_question = findViewById(R.id.questions);
-        tv_nota = findViewById(R.id.nota);
-        answ1 = findViewById(R.id.answ1);
-        answ2 = findViewById(R.id.answ2);
-        answ3 = findViewById(R.id.answ3);
-        answ4 = findViewById(R.id.answ4);
-        readQuestions(1);
-        setAnswerClicks();
-    }
-
     private void setAnswerClicks() {
         database.child("answers-"+lessonId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Answers answers = snapshot.getValue(Answers.class);
-                answ1.setOnClickListener(new View.OnClickListener() {
+
+                nextQuestion.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(i<5) {
-                            if (answ1.getText().equals(answers.getAnswers().get(i-1))) {
-                                nota++;
-                            }
-                            i++;
-                            readQuestions(i);
-                        } else {
-                            if (answ1.getText().equals(answers.getAnswers().get(i-1))) {
-                                nota++;
-                            }
-                            openFinishActivity();
-                        }
-                    }
-                });
-
-                answ2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(i<5) {
-                            if (answ2.getText().equals(answers.getAnswers().get(i-1))) {
-                                nota++;
-                            }
-                            i++;
-                            readQuestions(i);
-                        } else {
-                            if (answ2.getText().equals(answers.getAnswers().get(i-1))) {
-                                nota++;
-                            }
-                            openFinishActivity();
-                        }
-
-                    }
-                });
-
-                answ3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(i<5) {
-                            if (answ3.getText().equals(answers.getAnswers().get(i-1))) {
-                                nota++;
-                            }
-                            i++;
-                            readQuestions(i);
-                        } else {
-                            if (answ3.getText().equals(answers.getAnswers().get(i-1))) {
-                                nota++;
-                            }
-                            openFinishActivity();
-                        }
-
-                    }
-                });
-
-                answ4.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(i<5) {
-                            if (answ4.getText().equals(answers.getAnswers().get(i-1))) {
-                                nota++;
-                            }
-                            i++;
-                            readQuestions(i);
-                        } else {
-                            if (answ4.getText().equals(answers.getAnswers().get(i-1))) {
-                                nota++;
-                            }
-                            openFinishActivity();
+                        if (answ1.isChecked()) {
+                            checkAnswer(answ1, answers);
+                        } else if (answ2.isChecked()) {
+                            checkAnswer(answ2, answers);
+                        } else if (answ3.isChecked()) {
+                            checkAnswer(answ3, answers);
+                        } else if (answ4.isChecked()) {
+                            checkAnswer(answ4, answers);
                         }
 
                     }
@@ -157,6 +93,7 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void readQuestions(int i) {
+        rGroup.clearCheck();
         databaseIntreb.child("question-" + i + "_" + lessonId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -172,6 +109,21 @@ public class TestActivity extends AppCompatActivity {
 
     }
 
+    private void checkAnswer(RadioButton btn, Answers answers) {
+        if(i<5) {
+            if (btn.getText().equals(answers.getAnswers().get(i-1))) {
+                nota++;
+            }
+            i++;
+            readQuestions(i);
+        } else {
+            if (btn.getText().equals(answers.getAnswers().get(i-1))) {
+                nota++;
+            }
+            openFinishActivity();
+        }
+    }
+
     private void openFinishActivity() {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         lessonProgress = new LessonProgress("grade_"+userId+"_"+lessonId, lessonId, userId, nota*100/5, nota*10/5, currentDate);
@@ -183,6 +135,19 @@ public class TestActivity extends AppCompatActivity {
             Toast.makeText(this, "Mai incearca. Iti poti vedea notele in zona de Note.", Toast.LENGTH_SHORT).show();
             finish();
         }
+    }
+
+    private void initComponents() {
+        tv_question = findViewById(R.id.questions);
+        tv_nota = findViewById(R.id.nota);
+        answ1 = findViewById(R.id.answ1);
+        answ2 = findViewById(R.id.answ2);
+        answ3 = findViewById(R.id.answ3);
+        answ4 = findViewById(R.id.answ4);
+        nextQuestion = findViewById(R.id.nextQuestion);
+        rGroup = findViewById(R.id.radioGroup);
+        readQuestions(1);
+        setAnswerClicks();
     }
 
     private void populateView(String question, List<String > answers) {

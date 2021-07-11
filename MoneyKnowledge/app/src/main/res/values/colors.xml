@@ -11,4 +11,5 @@
     <color name="transparent">#03000000</color>
     <color name="colorMenu">#A09196</color>
     <color name="transparentRose">#8DE6D7D7</color>
+    <color name="selectedAnswer">#B02792</color>
 </resources>

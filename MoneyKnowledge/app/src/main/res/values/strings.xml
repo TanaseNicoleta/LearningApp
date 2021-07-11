@@ -48,4 +48,8 @@
     <string name="test">Test</string>
     <string name="notitele_mele">Notitele mele</string>
     <string name="note">Note</string>
+    <string name="to">Catre: </string>
+    <string name="subject">Subiect: </string>
+    <string name="message">Mesaj: </string>
+    <string name="trimite">Trimite</string>
 </resources>

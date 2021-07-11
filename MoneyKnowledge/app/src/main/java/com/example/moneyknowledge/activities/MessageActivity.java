@@ -8,8 +8,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.moneyknowledge.R;
 import com.google.android.material.navigation.NavigationView;
@@ -20,12 +25,54 @@ public class MessageActivity extends AppCompatActivity implements NavigationView
     NavigationView navView;
     Toolbar toolbar;
 
+    EditText etTo, etSubject, etMessage;
+    Button sendBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         initMenuComponents();
+        initComponents();
 
+        sendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String subject = etSubject.getText().toString().trim();
+                String message = etMessage.getText().toString().trim();
+
+                if(subject.isEmpty())
+                {
+                    Toast.makeText(MessageActivity.this, "Te rog adauga un subiect", Toast.LENGTH_SHORT).show();
+                }
+                else if(message.isEmpty())
+                {
+                    Toast.makeText(MessageActivity.this, "Te rog adauga un mesaj", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    String mail = "mailto:" + "tanasenicoleta18@stud.ase.ro" +
+                            "?&subject=" + Uri.encode(subject) +
+                            "&body=" + Uri.encode(message);
+                    Intent intent = new Intent(Intent.ACTION_SENDTO);
+                    intent.setData(Uri.parse(mail));
+                    try {
+                        startActivity(Intent.createChooser(intent,"Send Email.."));
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(MessageActivity.this, "Exception: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+    }
+
+    private void initComponents() {
+        etSubject = findViewById(R.id.subject);
+        etMessage = findViewById(R.id.message);
+        sendBtn = findViewById(R.id.btn_send);
     }
 
     //Drawer Menu

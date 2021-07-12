@@ -25,7 +25,9 @@ import android.widget.Toast;
 import com.example.moneyknowledge.R;
 import com.example.moneyknowledge.dialogs.AddNoteDialog;
 import com.example.moneyknowledge.dialogs.UpdateUserProfileDialog;
+import com.example.moneyknowledge.model.Answers;
 import com.example.moneyknowledge.model.Lesson;
+import com.example.moneyknowledge.model.Question;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,6 +43,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class ReadLessonActivity extends AppCompatActivity{
     public static final String LESSON_ID = "lessonId";
     ImageView image;
@@ -52,6 +56,8 @@ public class ReadLessonActivity extends AppCompatActivity{
 
     public static final String LESSONS = "lessons";
     final DatabaseReference database = FirebaseDatabase.getInstance().getReference(LESSONS);
+    final DatabaseReference databaseI = FirebaseDatabase.getInstance().getReference("intrebari");
+    final DatabaseReference databaseR = FirebaseDatabase.getInstance().getReference("raspunsuri");
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     @Override
@@ -62,6 +68,26 @@ public class ReadLessonActivity extends AppCompatActivity{
         lessonId = intent.getStringExtra("id");
 
         initComponents();
+
+//        ArrayList<String> answers = new ArrayList<>();
+//        answers.add("Business");
+//        answers.add("Activitate economică");
+//        answers.add("Întreprindere");
+//        answers.add("Сomerț");
+//        Question q1 = new Question("question-5_"+lessonId,lessonId,
+//                "Orice activitate de gestiune eficientă a resurselor economice este numită:", answers, "Activitate economică");
+//
+//        databaseI.child(q1.getId()).setValue(q1);
+//
+//        ArrayList<String> answers = new ArrayList<>();
+//        answers.add("rentabilitate");
+//        answers.add("suma totală a veniturilor din operațiunile comerciale efectuate de firmă, respectiv vânzarea de mărfuri și produse într-o perioadă de timp determinată");
+//        answers.add("plasament de bani în valori mobiliare aducator de venit sub formă de dobandă, dividende sau câștiguri de capital și/sau achiziționare de mijloace de producție");
+//        answers.add("este partea rămasă din venitul total ce revine întreprinzatorului după ce s-au scăzut toate cheltuielile aferente venitului respectiv");
+//        answers.add("Activitate economică");
+//
+//        Answers answ = new Answers("answers-"+lessonId, lessonId, answers);
+//        databaseR.child(answ.getId()).setValue(answ);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override

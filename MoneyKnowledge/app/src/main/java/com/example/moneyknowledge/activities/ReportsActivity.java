@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.moneyknowledge.R;
+import com.example.moneyknowledge.model.Question;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -25,6 +26,8 @@ public class ReportsActivity extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports);
         initMenuComponents();
+
+
 
     }
 

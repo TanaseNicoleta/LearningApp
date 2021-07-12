@@ -128,13 +128,10 @@ public class TestActivity extends AppCompatActivity {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         lessonProgress = new LessonProgress("grade_"+userId+"_"+lessonId, lessonId, userId, nota*100/5, nota*10/5, currentDate);
         databaseGrades.child(lessonProgress.getId()).setValue(lessonProgress);
-        if (nota >= 5) {
-            Toast.makeText(this, "Bravo! Ai trecut testul. Iti poti vedea notele in zona de Note.", Toast.LENGTH_SHORT).show();
-            finish();
-        } else {
-            Toast.makeText(this, "Mai incearca. Iti poti vedea notele in zona de Note.", Toast.LENGTH_SHORT).show();
-            finish();
-        }
+
+        Toast.makeText(this, "Verifica-ti notele in zona de Note.", Toast.LENGTH_SHORT).show();
+        finish();
+
     }
 
     private void initComponents() {

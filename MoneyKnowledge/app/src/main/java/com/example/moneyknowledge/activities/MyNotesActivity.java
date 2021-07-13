@@ -2,14 +2,18 @@ package com.example.moneyknowledge.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.moneyknowledge.R;
@@ -55,6 +59,7 @@ public class MyNotesActivity extends AppCompatActivity implements NavigationView
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                notes.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Notes note = dataSnapshot.getValue(Notes.class);
                     if(note.getId_user().equals(userId))
@@ -65,6 +70,29 @@ public class MyNotesActivity extends AppCompatActivity implements NavigationView
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        lvNotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Notes selectedNote = (Notes) parent.getItemAtPosition(position);
+
+                new AlertDialog.Builder(parent.getContext())
+                        .setTitle("Sterge notita")
+                        .setMessage("Sigur doresti sa stergi aceasta notita?")
+
+                        .setPositiveButton("da", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                                database.child(selectedNote.getId()).removeValue();
+
+                            }
+                        })
+
+                        .setNegativeButton("nu", null)
+                        .show();
 
             }
         });

@@ -48,10 +48,11 @@ public class TestActivity extends AppCompatActivity {
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     final String userId = user.getUid();
 
-    TextView tv_question, tv_nota;
+    TextView tv_question, tv_nota, tv_q_count;
     RadioButton answ1, answ2, answ3, answ4;
     RadioGroup rGroup;
     FloatingActionButton nextQuestion;
+    Button exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,15 @@ public class TestActivity extends AppCompatActivity {
         intent = getIntent();
         lessonId = intent.getStringExtra(LESSON_ID);
         initComponents();
+        readQuestions(1);
+        setAnswerClicks();
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void setAnswerClicks() {
@@ -137,14 +147,14 @@ public class TestActivity extends AppCompatActivity {
     private void initComponents() {
         tv_question = findViewById(R.id.questions);
         tv_nota = findViewById(R.id.nota);
+        tv_q_count = findViewById(R.id.question_counter);
+        exit = findViewById(R.id.exit_quiz);
         answ1 = findViewById(R.id.answ1);
         answ2 = findViewById(R.id.answ2);
         answ3 = findViewById(R.id.answ3);
         answ4 = findViewById(R.id.answ4);
         nextQuestion = findViewById(R.id.nextQuestion);
         rGroup = findViewById(R.id.radioGroup);
-        readQuestions(1);
-        setAnswerClicks();
     }
 
     private void populateView(String question, List<String > answers) {
@@ -154,6 +164,7 @@ public class TestActivity extends AppCompatActivity {
         answ3.setText(answers.get(2));
         answ4.setText(answers.get(3));
         tv_nota.setText("Nota: " + nota);
+        tv_q_count.setText("Intrebarea: " + Integer.toString(i) + "/5");
     }
 
 }

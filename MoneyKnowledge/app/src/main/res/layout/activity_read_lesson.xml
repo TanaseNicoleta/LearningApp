@@ -41,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/white"
-                android:layout_margin="20dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
                 android:textIsSelectable="true"
                 />
 

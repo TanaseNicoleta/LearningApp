@@ -2,11 +2,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
 
     <LinearLayout
-        android:backgroundTint="@color/black_transp"
+        android:backgroundTint="@color/yellow_transp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -30,7 +31,6 @@
                 android:id="@+id/lesson_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:textSize="14dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
@@ -39,14 +39,11 @@
             />
         </LinearLayout>
 
-
-
         <TextView
             android:id="@+id/noteContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="10dp"

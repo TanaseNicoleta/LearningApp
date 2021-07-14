@@ -10,7 +10,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.text.LineBreaker;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -56,8 +58,6 @@ public class ReadLessonActivity extends AppCompatActivity{
 
     public static final String LESSONS = "lessons";
     final DatabaseReference database = FirebaseDatabase.getInstance().getReference(LESSONS);
-    final DatabaseReference databaseI = FirebaseDatabase.getInstance().getReference("intrebari");
-    final DatabaseReference databaseR = FirebaseDatabase.getInstance().getReference("raspunsuri");
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     @Override
@@ -66,28 +66,7 @@ public class ReadLessonActivity extends AppCompatActivity{
         setContentView(R.layout.activity_read_lesson);
         intent=getIntent();
         lessonId = intent.getStringExtra("id");
-
         initComponents();
-
-//        ArrayList<String> answers = new ArrayList<>();
-//        answers.add("Business");
-//        answers.add("Activitate economică");
-//        answers.add("Întreprindere");
-//        answers.add("Сomerț");
-//        Question q1 = new Question("question-5_"+lessonId,lessonId,
-//                "Orice activitate de gestiune eficientă a resurselor economice este numită:", answers, "Activitate economică");
-//
-//        databaseI.child(q1.getId()).setValue(q1);
-//
-//        ArrayList<String> answers = new ArrayList<>();
-//        answers.add("rentabilitate");
-//        answers.add("suma totală a veniturilor din operațiunile comerciale efectuate de firmă, respectiv vânzarea de mărfuri și produse într-o perioadă de timp determinată");
-//        answers.add("plasament de bani în valori mobiliare aducator de venit sub formă de dobandă, dividende sau câștiguri de capital și/sau achiziționare de mijloace de producție");
-//        answers.add("este partea rămasă din venitul total ce revine întreprinzatorului după ce s-au scăzut toate cheltuielile aferente venitului respectiv");
-//        answers.add("Activitate economică");
-//
-//        Answers answ = new Answers("answers-"+lessonId, lessonId, answers);
-//        databaseR.child(answ.getId()).setValue(answ);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +139,9 @@ public class ReadLessonActivity extends AppCompatActivity{
         content = findViewById(R.id.lessonContent);
         openTest = findViewById(R.id.openTest);
         notes = findViewById(R.id.openNotes);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            content.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+        }
 
         database.child(lessonId).addValueEventListener(new ValueEventListener() {
             @Override

@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.moneyknowledge.R;
@@ -52,60 +53,36 @@ public class ReportsActivity extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports);
         initMenuComponents();
-        initComponents();
-    }
-
-
-    public void initComponents() {
         barChart = findViewById(R.id.barChart);
         SetData();
 
     }
 
     private void SetData() {
-        barEntries = new ArrayList();
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                barEntries = new ArrayList();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    LessonProgress grade = dataSnapshot.getValue(LessonProgress.class);
+                    if(grade.getId_user().equals(userId) && grade.getGrade() > 0) {
+                        barEntries.add(new BarEntry(i, Float.parseFloat(Integer.toString(grade.getGrade()))));
+                        i++;
+                    }
+                }
+                Log.i("mesaj", barEntries.toString());
+                barDataSet = new BarDataSet(barEntries, "");
+                barData = new BarData(barDataSet);
+                barChart.setData(barData);
+                barDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+                barDataSet.setValueTextColor(Color.WHITE);
+                barDataSet.setValueTextSize(12f);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        barEntries.add(new BarEntry(Float.parseFloat(Integer.toString(2)), 0));
-        barEntries.add(new BarEntry(4f, 1));
-        barEntries.add(new BarEntry(3f, 2));
-        barEntries.add(new BarEntry(0f, 3));
-        barEntries.add(new BarEntry(1f, 4));
-        barEntries.add(new BarEntry(9f, 5));
-        barEntries.add(new BarEntry(5f, 6));
-
-        barDataSet = new BarDataSet(barEntries, "");
-        barData = new BarData(barDataSet);
-        barChart.setData(barData);
-        barDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        barDataSet.setValueTextColor(Color.WHITE);
-        barDataSet.setValueTextSize(12f);
-
-//        database.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    LessonProgress grade = dataSnapshot.getValue(LessonProgress.class);
-//                    if(grade.getId_user().equals(userId) && grade.getGrade() > 0) {
-//                        barEntries.add(new BarEntry(Float.parseFloat(Integer.toString(grade.getGrade())), i));
-//                        i++;
-//                    }
-//
-//                }
-//                barDataSet = new BarDataSet(barEntries, "");
-//                barData = new BarData(barDataSet);
-//                barChart.setData(barData);
-//                barDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-//                barDataSet.setValueTextColor(Color.WHITE);
-//                barDataSet.setValueTextSize(12f);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
-
+            }
+        });
     }
 
     //Drawer Menu

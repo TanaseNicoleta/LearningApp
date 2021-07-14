@@ -17,9 +17,13 @@ import com.example.moneyknowledge.R;
 import com.example.moneyknowledge.model.LessonProgress;
 import com.example.moneyknowledge.model.Question;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,13 +52,20 @@ public class ReportsActivity extends AppCompatActivity implements NavigationView
     BarDataSet barDataSet;
     ArrayList barEntries;
 
+    PieChart pieChart;
+    PieData pieData;
+    PieDataSet pieDataSet;
+    ArrayList pieEntries;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports);
         initMenuComponents();
         barChart = findViewById(R.id.barChart);
+        pieChart = findViewById(R.id.pieChart);
         SetData();
+        dataValues();
 
     }
 
@@ -77,6 +88,32 @@ public class ReportsActivity extends AppCompatActivity implements NavigationView
                 barDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
                 barDataSet.setValueTextColor(Color.WHITE);
                 barDataSet.setValueTextSize(12f);
+                barChart.setPinchZoom(true);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void dataValues() {
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                pieEntries = new ArrayList();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    LessonProgress grade = dataSnapshot.getValue(LessonProgress.class);
+                    if(grade.getId_user().equals(userId) && grade.getGrade() > 0) {
+                        pieEntries.add(new PieEntry(Float.parseFloat(Integer.toString(grade.getGrade())), grade.getId_lesson()));
+                    }
+                }
+                Log.i("mesaj2", pieEntries.toString());
+                pieDataSet = new PieDataSet(pieEntries, "");
+                pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                PieData pieData = new PieData(pieDataSet);
+                pieChart.setData(pieData);
+                pieChart.invalidate();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

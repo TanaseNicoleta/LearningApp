@@ -53,4 +53,8 @@
     <string name="message">Mesaj: </string>
     <string name="trimite">Trimite</string>
     <string name="iesi">Iesi</string>
+    <string name="barchart">Bar Chart</string>
+    <string name="pie_chart">Pie Chart</string>
+    <string name="notele_celorlalti_utilizatori">Notele celorlalti utilizatori</string>
+    <string name="notele_mele">Notele mele</string>
 </resources>

@@ -78,12 +78,6 @@ public class ReportsActivity extends AppCompatActivity implements NavigationView
         SetData();
         dataValues();
 
-        labels.add("economie-1");
-        labels.add("economie-2");
-        labels.add("economie-3");
-        labels.add("economie-4");
-        labels.add("economie-5");
-
     }
 
     private void SetData() {
@@ -93,6 +87,7 @@ public class ReportsActivity extends AppCompatActivity implements NavigationView
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     LessonProgress grade = dataSnapshot.getValue(LessonProgress.class);
                     barEntries.add(new BarEntry(i, Float.parseFloat(Integer.toString(grade.getGrade())), grade.getId_lesson()));
+                    labels.add(grade.getId_lesson());
                     i++;
                 }
                 Log.i("mesaj", barEntries.toString());

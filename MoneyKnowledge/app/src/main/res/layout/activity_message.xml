@@ -57,7 +57,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/round_border_lesson"
             android:padding="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginHorizontal="20dp"
             />
 

@@ -23,16 +23,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <ImageView
                 android:id="@+id/lessonImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/download"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="20dp"
                 />
-
 
             <TextView
                 android:id="@+id/lessonContent"
@@ -44,7 +41,6 @@
                 android:layout_marginHorizontal="15dp"
                 android:textIsSelectable="true"
                 />
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -71,7 +67,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

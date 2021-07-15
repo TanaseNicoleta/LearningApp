@@ -76,13 +76,12 @@ public class ReportsActivity extends AppCompatActivity implements NavigationView
                 barEntries = new ArrayList();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     LessonProgress grade = dataSnapshot.getValue(LessonProgress.class);
-                    if(grade.getId_user().equals(userId) && grade.getGrade() > 0) {
-                        barEntries.add(new BarEntry(i, Float.parseFloat(Integer.toString(grade.getGrade()))));
-                        i++;
-                    }
+                    barEntries.add(new BarEntry(i, Float.parseFloat(Integer.toString(grade.getGrade()))));
+                    i++;
+
                 }
                 Log.i("mesaj", barEntries.toString());
-                barDataSet = new BarDataSet(barEntries, "");
+                barDataSet = new BarDataSet(barEntries, "Note");
                 barData = new BarData(barDataSet);
                 barChart.setData(barData);
                 barDataSet.setColors(ColorTemplate.JOYFUL_COLORS);

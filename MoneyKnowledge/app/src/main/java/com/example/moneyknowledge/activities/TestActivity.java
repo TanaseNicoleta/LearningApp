@@ -141,7 +141,6 @@ public class TestActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Verifica-ti notele in zona de Note.", Toast.LENGTH_SHORT).show();
         finish();
-
     }
 
     private void initComponents() {

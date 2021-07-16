@@ -134,6 +134,10 @@ public class GradesListActivity extends AppCompatActivity implements NavigationV
                 Intent intentNotes = new Intent(this, MyNotesActivity.class);
                 startActivity(intentNotes);
                 break;
+            case R.id.nav_more:
+                Intent intentMore = new Intent(this, MoreActivity.class);
+                startActivity(intentMore);
+                break;
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

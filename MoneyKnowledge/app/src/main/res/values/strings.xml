@@ -57,4 +57,8 @@
     <string name="pie_chart">Pie Chart</string>
     <string name="notele_celorlalti_utilizatori">Notele celorlalti utilizatori</string>
     <string name="notele_mele">Notele mele</string>
+    <string name="studiaza_mai_mult">Studiaza mai mult</string>
+    <string name="mesaj_more">Vrei sa aflii mai multe? Ai putea incerca unul din cursurile de mai jos sau citi din bibliografia recomandata.</string>
+    <string name="cursuri">Cursuri</string>
+    <string name="carti">Carti</string>
 </resources>

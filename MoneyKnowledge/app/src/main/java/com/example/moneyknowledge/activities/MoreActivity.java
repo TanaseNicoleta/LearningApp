@@ -17,83 +17,55 @@ import com.example.moneyknowledge.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LessonsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String ECONOMIE = "Economie";
-    public static final String CATEGORY = "Category";
-    public static final String CONTABILITATE = "Contabilitate";
-    public static final String FINANTE = "Finante";
+public class MoreActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navView;
     Toolbar toolbar;
-    Button btnEconomy, btnAccounting, btnFinance;
+
+    Button btnClasses, btnBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lessons);
+        setContentView(R.layout.activity_more);
         initMenuComponents();
-        initComponents();
-    }
+        btnBooks = findViewById(R.id.btnBooks);
+        btnClasses = findViewById(R.id.btnClasses);
 
-    private void initComponents() {
-        btnEconomy = findViewById(R.id.btnEconomie);
-        btnAccounting = findViewById(R.id.btnContabilitate);
-        btnFinance = findViewById(R.id.btnFinante);
-
-        btnEconomy.setOnClickListener(openEconomyList());
-        btnAccounting.setOnClickListener(openAccountingList());
-        btnFinance.setOnClickListener(openFinanceList());
-    }
-
-    private View.OnClickListener openFinanceList() {
-        return new View.OnClickListener() {
+        btnBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LessonListActivity.class);
-                intent.putExtra(CATEGORY, FINANTE);
-                startActivity(intent);
+                Intent intentBooks = new Intent(getApplicationContext(), BooksActivity.class);
+                startActivity(intentBooks);
             }
-        };
-    }
+        });
 
-    private View.OnClickListener openAccountingList() {
-        return new View.OnClickListener() {
+        btnClasses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LessonListActivity.class);
-                intent.putExtra(CATEGORY, CONTABILITATE);
-                startActivity(intent);
+                Intent intentClasses = new Intent(getApplicationContext(), ClassesActivity.class);
+                startActivity(intentClasses);
             }
-        };
+        });
     }
 
-    private View.OnClickListener openEconomyList() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LessonListActivity.class);
-                intent.putExtra(CATEGORY, ECONOMIE);
-                startActivity(intent);
-            }
-        };
-    }
 
     //Drawer Menu
     private void initMenuComponents() {
-       drawerLayout = findViewById(R.id.drawer_layout);
-       navView = findViewById(R.id.nav_view);
-       toolbar = findViewById(R.id.toolbar);
-       toolbar.setTitle("");
-       setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
 
-       //Navigation drawer menu
+        //Navigation drawer menu
         navView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         navView.setNavigationItemSelectedListener(this);
-        navView.setCheckedItem(R.id.nav_lessons);
+        navView.setCheckedItem(R.id.nav_more);
     }
 
     @Override
@@ -146,4 +118,7 @@ public class LessonsActivity extends AppCompatActivity implements NavigationView
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }

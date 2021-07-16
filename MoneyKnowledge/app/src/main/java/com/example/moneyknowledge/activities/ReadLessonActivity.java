@@ -49,8 +49,9 @@ import java.util.ArrayList;
 
 public class ReadLessonActivity extends AppCompatActivity{
     public static final String LESSON_ID = "lessonId";
+    public static final String ANSWERS_TEST = "answers-test";
     ImageView image;
-    TextView content;
+    TextView content, raport;
     Intent intent;
     String lessonId;
     FloatingActionButton openTest;
@@ -81,6 +82,15 @@ public class ReadLessonActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                intent.putExtra(LESSON_ID, lessonId);
+                startActivity(intent);
+            }
+        });
+
+        raport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestReportActivity.class);
                 intent.putExtra(LESSON_ID, lessonId);
                 startActivity(intent);
             }
@@ -139,6 +149,7 @@ public class ReadLessonActivity extends AppCompatActivity{
         content = findViewById(R.id.lessonContent);
         openTest = findViewById(R.id.openTest);
         notes = findViewById(R.id.openNotes);
+        raport = findViewById(R.id.testReport);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             content.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         }

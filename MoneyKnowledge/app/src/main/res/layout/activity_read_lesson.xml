@@ -58,6 +58,21 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
+                <TextView
+                    android:id="@+id/testReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Raport test"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:background="@drawable/round_border_lesson"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/openNotes"
+                    app:layout_constraintEnd_toStartOf="@+id/openTest"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/openTest"
                     android:layout_width="wrap_content"

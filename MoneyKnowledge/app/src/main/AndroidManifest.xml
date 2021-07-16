@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyKnowledge">
+        <activity android:name=".activities.TestReportActivity"></activity>
         <activity android:name=".activities.MyNotesActivity" />
         <activity android:name=".activities.GradesListActivity" />
         <activity android:name=".activities.TestActivity" />

@@ -38,7 +38,6 @@ public class LessonsListAdapter extends ArrayAdapter<Lesson> {
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     final String userId = user.getUid();
 
-
     public LessonsListAdapter(@NonNull Context context, int resource, @NonNull List<Lesson> objects, LayoutInflater inflater) {
         super(context, resource, objects);
         this.context = context;

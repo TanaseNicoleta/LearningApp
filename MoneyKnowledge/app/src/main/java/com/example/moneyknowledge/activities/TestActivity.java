@@ -36,6 +36,7 @@ public class TestActivity extends AppCompatActivity {
     public static final String INTREBARI = "intrebari";
     public static final String RASPUNSURI = "raspunsuri";
     public static final String NOTE = "note";
+    public static final String ANSWERS_TEST = "answers-test";
     LessonProgress lessonProgress;
     Intent intent;
     String lessonId;
@@ -45,6 +46,7 @@ public class TestActivity extends AppCompatActivity {
     final DatabaseReference databaseIntreb = FirebaseDatabase.getInstance().getReference(INTREBARI);
     final DatabaseReference database = FirebaseDatabase.getInstance().getReference(RASPUNSURI);
     final DatabaseReference databaseGrades = FirebaseDatabase.getInstance().getReference(NOTE);
+    final DatabaseReference databaseAnsw = FirebaseDatabase.getInstance().getReference(ANSWERS_TEST);
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     final String userId = user.getUid();
 
@@ -53,6 +55,8 @@ public class TestActivity extends AppCompatActivity {
     RadioGroup rGroup;
     FloatingActionButton nextQuestion;
     Button exit;
+
+    ArrayList<String> answersList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class TestActivity extends AppCompatActivity {
         initComponents();
         readQuestions(1);
         setAnswerClicks();
+        answersList.add(userId);
+        answersList.add(lessonId);
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,13 +138,14 @@ public class TestActivity extends AppCompatActivity {
             }
             openFinishActivity();
         }
+        answersList.add(btn.getText().toString());
     }
 
     private void openFinishActivity() {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         lessonProgress = new LessonProgress("grade_"+userId+"_"+lessonId, lessonId, userId, nota*100/5, nota*10/5, currentDate);
         databaseGrades.child(lessonProgress.getId()).setValue(lessonProgress);
-
+        databaseAnsw.child(userId+"-"+lessonId).setValue(answersList);
         Toast.makeText(this, "Verifica-ti notele in zona de Note.", Toast.LENGTH_SHORT).show();
         finish();
     }

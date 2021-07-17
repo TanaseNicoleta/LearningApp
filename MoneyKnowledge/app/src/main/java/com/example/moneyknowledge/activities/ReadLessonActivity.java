@@ -68,15 +68,6 @@ public class ReadLessonActivity extends AppCompatActivity{
         lessonId = intent.getStringExtra("id");
         initComponents();
 
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //open gallery
-                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGalleryIntent, 1000);
-            }
-        });
-
         openTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,55 +91,17 @@ public class ReadLessonActivity extends AppCompatActivity{
         return onClickListener;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1000) {
-            if (resultCode == Activity.RESULT_OK) {
-                Uri uriImage = data.getData();
-                uploadImageToFirebase(uriImage);
-            }
-        }
-    }
-
-    private void uploadImageToFirebase(Uri imageUri) {
-        StorageReference fileReference = storageReference.child("lessons/"+lessonId+"/banner.jpg");
-        fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(image);
-                    }
-                });
-                Toast.makeText(ReadLessonActivity.this, "Image successfully uploaded!", Toast.LENGTH_SHORT).show();
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ReadLessonActivity.this, "Failed to upload!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-    }
-
     private void initComponents() {
         image = findViewById(R.id.lessonImage);
         content = findViewById(R.id.lessonContent);
         openTest = findViewById(R.id.openTest);
         notes = findViewById(R.id.openNotes);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            content.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
-        }
 
         database.child(lessonId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Lesson lesson = snapshot.getValue(Lesson.class);
                 content.setText(lesson.getContent());
-
             }
 
             @Override

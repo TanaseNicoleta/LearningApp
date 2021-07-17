@@ -58,6 +58,9 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
             TextView auth=view.findViewById(R.id.author);
             auth.setText("Autor: " + book.getAuthor());
+
+            TextView link = view.findViewById(R.id.link);
+            link.setText(book.getDownloadLink());
         }
 
         return view;

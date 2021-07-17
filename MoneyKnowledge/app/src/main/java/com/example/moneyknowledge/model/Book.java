@@ -4,15 +4,25 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
     String title, author, publisher, id;
+    String downloadLink;
 
-    public Book(String title, String author, String publisher, String id) {
+    public Book(String title, String author, String publisher, String id, String downloadLink) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.id = id;
+        this.downloadLink = downloadLink;
     }
 
     public Book() {
+    }
+
+    public String getDownloadLink() {
+        return downloadLink;
+    }
+
+    public void setDownloadLink(String downloadLink) {
+        this.downloadLink = downloadLink;
     }
 
     public String getId() {

@@ -16,6 +16,7 @@
             android:id="@+id/image"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             />
 
         <LinearLayout
@@ -31,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:paddingLeft="5dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                />
 
             <TextView
                 android:id="@+id/author"
@@ -39,17 +41,20 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:paddingLeft="10dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                />
 
             <TextView
                 android:id="@+id/link"
                 android:layout_width="220dp"
                 android:layout_height="40dp"
                 android:autoLink="web"
-                android:textColorLink="@color/teal_700"
+                android:textColorLink="@color/purple2"
                 android:layout_margin="5dp"
                 android:paddingLeft="10dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginRight="5dp"
+                />
 
         </LinearLayout>
 
